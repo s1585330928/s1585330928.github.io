@@ -311,6 +311,43 @@
     }
     .meta-box b { display: block; color: var(--text); margin-top: 4px; }
 
+    .build-weapons-detail {
+      margin-top: 16px;
+      display: grid;
+      gap: 12px;
+      text-align: left;
+    }
+    .weapon-block {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      background: rgba(0,0,0,.16);
+    }
+    .weapon-block h4 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: .02em;
+    }
+    .weapon-block .weapon-block-desc {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .skill-group { margin-top: 10px; font-size: 12px; color: var(--muted2); }
+    .skill-group strong {
+      display: block;
+      color: var(--cyan);
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .skill-list { margin: 0; padding-left: 18px; line-height: 1.55; color: var(--muted); font-size: 13px; }
+    .skill-list li { margin: 3px 0; }
+
     .table-wrap { overflow: auto; border-radius: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.055); }
     table { width: 100%; border-collapse: collapse; min-width: 760px; }
     th, td { padding: 16px; border-bottom: 1px solid var(--line); text-align: left; }
@@ -619,15 +656,98 @@
 
   <script>
     const builds = [
-      { name: "长弓 + 匕首", role: ["PVE输出", "PVP", "新手推荐"], weapons: ["Longbow", "Dagger"], difficulty: "中", crowd: "喜欢远程输出的新手", summary: "远程输出手感好，匕首提供爆发和机动性，适合安全距离输出与灵活走位。", tags: ["远程", "爆发", "机动"] },
-      { name: "剑盾 + 魔杖", role: ["坦克", "新手推荐"], weapons: ["Sword & Shield", "Wand"], difficulty: "低-中", crowd: "副本承伤 / 稳定开荒", summary: "偏生存和团队功能，容错率高，适合副本承伤、公会活动和稳定开荒。", tags: ["承伤", "团队", "容错"] },
-      { name: "法杖 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Staff", "Dagger"], difficulty: "中-高", crowd: "追求爆发伤害", summary: "法术爆发强，适合清怪和打输出，但对站位、技能循环和资源管理要求更高。", tags: ["法系", "爆发", "AOE"] },
-      { name: "大剑 + 匕首", role: ["PVP", "PVE输出"], weapons: ["Greatsword", "Dagger"], difficulty: "中", crowd: "近战切入玩家", summary: "近战压制能力强，适合小规模PVP和切后排，但需要掌握进场和撤退时机。", tags: ["近战", "控制", "切入"] },
-      { name: "弩 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Crossbow", "Dagger"], difficulty: "高", crowd: "愿意练手法的玩家", summary: "高频输出与爆发组合，操作更吃熟练度，上限高但容错相对低。", tags: ["高频", "爆发", "手法"] },
-      { name: "魔杖 + 法杖", role: ["治疗", "PVE输出"], weapons: ["Wand", "Staff"], difficulty: "中", crowd: "组队辅助玩家", summary: "兼顾治疗、辅助和法术输出，适合固定队、公会队和喜欢团队贡献的玩家。", tags: ["治疗", "辅助", "法系"] },
-      { name: "剑盾 + 大剑", role: ["坦克", "PVP"], weapons: ["Sword & Shield", "Greatsword"], difficulty: "中", crowd: "前排控制玩家", summary: "承伤、控制和近战压制兼顾，适合团战前排和需要稳定开团的队伍。", tags: ["前排", "控制", "团战"] },
-      { name: "长弓 + 法杖", role: ["PVE输出", "新手推荐"], weapons: ["Longbow", "Staff"], difficulty: "中", crowd: "远程站桩输出", summary: "远程输出覆盖面广，适合喜欢稳定输出和副本刷图的玩家，操作压力相对适中。", tags: ["远程", "刷图", "稳定"] }
+      {
+        name: "长弓 + 匕首", role: ["PVE输出", "PVP", "新手推荐"], weapons: ["Longbow", "Dagger"], difficulty: "中", crowd: "喜欢远程输出的新手",
+        summary: "远程输出手感好，匕首提供爆发和机动性，适合安全距离输出与灵活走位。", tags: ["远程", "爆发", "机动"],
+        weaponBlocks: [
+          { label: "武器一 · 长弓", nameEn: "Longbow", detail: "主力输出位：中远距离消耗、单体点名与走位拉扯；被贴脸前尽量保留耐力用于后撤。", skills: { core: ["高倍率蓄力 / 瞄准射击：优先点满，负责压单体与破阶段", "快速上弦或短后摇射击：填充走位窗口，保持输出不断档", "减速、禁锢或击退类控制：帮自己拉开距离，方便接匕首"], flex: ["散射或窄锥 AOE：清小怪与蹭多目标", "标记易伤：配合集火与匕首爆发窗口"], passive: ["蓄力伤害、暴击或弱点加成", "耐力回复、移速或射程相关被动"] } },
+          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "副手爆发与保命：敌人突脸时打短爆发，或用位移技能重新建立长弓输出距离。", skills: { core: ["突进 / 背刺类高爆发：抓控制链末端或 Boss 易伤阶段", "短无敌、闪避或解控：被近身后保命再拉开", "流血、中毒等 DoT：拉长弓风筝期的总伤"], flex: ["单体打断或短硬控：补团队控制缺口"], passive: ["背刺 / 侧后伤害加成", "暴击回能或减冷却，缩短真空期"] } }
+        ]
+      },
+      {
+        name: "剑盾 + 魔杖", role: ["坦克", "新手推荐"], weapons: ["Sword & Shield", "Wand"], difficulty: "低-中", crowd: "副本承伤 / 稳定开荒",
+        summary: "偏生存和团队功能，容错率高，适合副本承伤、公会活动和稳定开荒。", tags: ["承伤", "团队", "容错"],
+        weaponBlocks: [
+          { label: "武器一 · 剑盾", nameEn: "Sword & Shield", detail: "主坦位：稳定仇恨、减伤与短控制；节奏偏「挡—反打—护队友」。", skills: { core: ["挑衅 / 仇恨提升技能：开场与换坦窗口必交", "格挡、护盾或百分比减伤：对齐 Boss 高伤读条", "短晕、击倒或推进：打断关键技能、调整怪面向"], flex: ["团队减伤光环或守护类技能：高压阶段保后排", "自我治疗或吸血：减轻治疗压力"], passive: ["格挡成功回血 / 回能", "防御、生命或格挡率向被动"] } },
+          { label: "武器二 · 魔杖", nameEn: "Wand", detail: "副手辅助：提供应急治疗、驱散与护盾，小队无纯奶时也能稳住血线。", skills: { core: ["单体愈合或快速抬血：点坦或点名队友", "群体缓回 / Hot：覆盖移动战", "净化、驱散或护盾：应对 Debuff 尖刺"], flex: ["短 CD 小群疗或减伤赐予：应对全团小掉血"], passive: ["治疗量、治疗暴击或法力续航", "对低血量目标额外治疗（救急）"] } }
+        ]
+      },
+      {
+        name: "法杖 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Staff", "Dagger"], difficulty: "中-高", crowd: "追求爆发伤害",
+        summary: "法术爆发强，适合清怪和打输出，但对站位、技能循环和资源管理要求更高。", tags: ["法系", "爆发", "AOE"],
+        weaponBlocks: [
+          { label: "武器一 · 法杖", nameEn: "Staff", detail: "法系主输出：AOE 清场与读条爆发；需熟悉安全输出位与读条窗口。", skills: { core: ["高伤读条或引导技能：对 Boss 本体与阶段易伤", "瞬发或短前摇 AOE：走位中填充、清小怪", "自保护盾、击退或定身：防止读条被打断"], flex: ["地面持续伤害区域：堵路、压多目标", "法力燃烧或破盾类技能：针对特定机制"], passive: ["法术暴击、属性穿透或元素加成", "读条加速、法力上限或击杀回能"] } },
+          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "补近战窗口与斩杀：Boss 近身机制或 PVP 贴身时，用法杖控场后匕首补爆发。", skills: { core: ["贴脸爆发连段：吃法杖硬控或减速红利", "位移贴近或绕背：调整角度打法杖难以覆盖的目标", "减疗或破甲类技能：PVP 集火辅助"], flex: ["隐身或难以选中：重新拉开再打下一套法杖"], passive: ["对控制目标增伤", "技能暴击缩短法杖关键技能 CD（若有联动）"] } }
+        ]
+      },
+      {
+        name: "大剑 + 匕首", role: ["PVP", "PVE输出"], weapons: ["Greatsword", "Dagger"], difficulty: "中", crowd: "近战切入玩家",
+        summary: "近战压制能力强，适合小规模PVP和切后排，但需要掌握进场和撤退时机。", tags: ["近战", "控制", "切入"],
+        weaponBlocks: [
+          { label: "武器一 · 大剑", nameEn: "Greatsword", detail: "正面压制：范围伤害、蓄力斩与短控制；负责压血线与逼出敌方技能。", skills: { core: ["蓄力重击或宽弧斩：对聚堆目标与前排坦克", "击倒、浮空或长时间硬控：接队友爆发", "霸体或减伤突进：顶技能强开"], flex: ["破甲或撕裂：拉长团战总伤"], passive: ["重击伤害、蓄力速度或耐力消耗优化", "对高血量目标增伤"] } },
+          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "侧翼收割：大剑打出硬直或残血后，匕首负责追击、斩杀与脱离。", skills: { core: ["多段位移或锁定突刺：跟集火目标", "处决或斩杀加成技能：收残血人头", "闪避、隐身或减仇恨：打完一套撤出集火区"], flex: ["减速或定身：留人配合大剑第二套"], passive: ["对低血量敌人增伤", "暴击后移速便于拉扯"] } }
+        ]
+      },
+      {
+        name: "弩 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Crossbow", "Dagger"], difficulty: "高", crowd: "愿意练手法的玩家",
+        summary: "高频输出与爆发组合，操作更吃熟练度，上限高但容错相对低。", tags: ["高频", "爆发", "手法"],
+        weaponBlocks: [
+          { label: "武器一 · 弩", nameEn: "Crossbow", detail: "远程高频输出：靠弹药 / 能量管理与短窗口爆发；站桩少时依赖滑步与技能位移。", skills: { core: ["核心填充射击或连射模式：维持 DPS 基本盘", "高伤单发或装填后爆发弹：对齐易伤与团队增伤", "击退、后跳射击或束缚：自保与风筝"], flex: ["穿透箭或窄线 AOE：站位友好时毛多目标"], passive: ["攻速、换弹或弹药上限", "暴击、弱点或距离增伤"] } },
+          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "爆发放大器：弩打出硬直或减速后，匕首在近距离放大爆发；失误时用位移兜底。", skills: { core: ["贴脸爆发技能：吃满弩的 debuff / 易伤", "多段位移：修正弩不好打的近身角度", "短无敌帧技能：覆盖换弹或硬直"], flex: ["减疗或破盾：PVP 针对奶与护盾坦"], passive: ["对减速 / 定身目标增伤", "暴击回能，缩短弩关键技能真空"] } }
+        ]
+      },
+      {
+        name: "魔杖 + 法杖", role: ["治疗", "PVE输出"], weapons: ["Wand", "Staff"], difficulty: "中", crowd: "组队辅助玩家",
+        summary: "兼顾治疗、辅助和法术输出，适合固定队、公会队和喜欢团队贡献的玩家。", tags: ["治疗", "辅助", "法系"],
+        weaponBlocks: [
+          { label: "武器一 · 魔杖", nameEn: "Wand", detail: "治疗主手：单体急救、群体抬血与增益；团队生存优先于个人毛伤害。", skills: { core: ["大抬血或瞬发急救：应对点名尖刺", "群体治疗或智能链疗：移动战覆盖", "攻击增益、急速或减伤赐予：对齐团队爆发轴"], flex: ["复活、免死或护盾：救场技能按副本携带"], passive: ["治疗量、治疗暴击与法力回复", "过量转护盾或减 CD（若有）"] } },
+          { label: "武器二 · 法杖", nameEn: "Staff", detail: "输出副手：治疗压力小时切法杖补刀；高压阶段仍以魔杖为主，法杖只打瞬发。", skills: { core: ["瞬发 DOT 或低读条技能：走位中不耽误抬血", "中 CD AOE：清小怪、压add 血量", "自保：护盾、击退防止被贴脸"], flex: ["长读条爆发：仅在有安全窗口或队友保护时"], passive: ["法术强度与治疗强度双修向被动（按版本择优）", "击杀或暴击回蓝"] } }
+        ]
+      },
+      {
+        name: "剑盾 + 大剑", role: ["坦克", "PVP"], weapons: ["Sword & Shield", "Greatsword"], difficulty: "中", crowd: "前排控制玩家",
+        summary: "承伤、控制和近战压制兼顾，适合团战前排和需要稳定开团的队伍。", tags: ["前排", "控制", "团战"],
+        weaponBlocks: [
+          { label: "武器一 · 剑盾", nameEn: "Sword & Shield", detail: "主坦与开团：仇恨、减伤、保护技能全在剑盾轮切时优先。", skills: { core: ["仇恨与远程拉怪技能：开团与换嘲", "格挡、盾墙类大减伤：对齐集火与爆发期", "短控与打断：护后排读条"], flex: ["冲锋或位移嘲讽：接撤退队友"], passive: ["格挡回血、威胁值生成", "生命与全减伤向被动"] } },
+          { label: "武器二 · 大剑", nameEn: "Greatsword", detail: "副手爆发：坦住核心伤害后，用大剑补压制、收割残血或逼退敌方后排。", skills: { core: ["蓄力范围斩：压近战堆叠区", "击倒或击飞：接队友远程爆发", "霸体推进：打乱敌方阵型"], flex: ["破甲或撕裂：团队物理增伤辅助"], passive: ["对控制目标增伤", "大剑技能暴击缩短剑盾防御技能 CD（若有）"] } }
+        ]
+      },
+      {
+        name: "长弓 + 法杖", role: ["PVE输出", "新手推荐"], weapons: ["Longbow", "Staff"], difficulty: "中", crowd: "远程站桩输出",
+        summary: "远程输出覆盖面广，适合喜欢稳定输出和副本刷图的玩家，操作压力相对适中。", tags: ["远程", "刷图", "稳定"],
+        weaponBlocks: [
+          { label: "武器一 · 长弓", nameEn: "Longbow", detail: "物理远程主力：单体与移动战输出；与法杖错开资源，避免双读条叠压力。", skills: { core: ["蓄力单点或速射循环：Boss 本体主力", "控制箭或减速：风筝与自保", "中距离位移射击：调整站位"], flex: ["锥形或落点 AOE：清杂鱼"], passive: ["暴击、弱点与耐力相关", "对精英或 Boss 增伤"] } },
+          { label: "武器二 · 法杖", nameEn: "Staff", detail: "法系补充：处理物理抗性高或多目标阶段；长弓真空期用法杖 DOT 或 AOE 填缝。", skills: { core: ["地面 AOE 或瞬发法术：毛小怪与双目标", "读条爆发：仅在安全窗口使用", "减速、定身或护盾：与长弓控制叠加"], flex: ["属性转换或破抗技能：针对特定 Boss 机制"], passive: ["法术穿透、持续伤害加成", "双武器资源错开类被动（按版本选择）"] } }
+        ]
+      }
     ];
+
+    function buildWeaponBlocksHtml(item) {
+      if (!item.weaponBlocks || !item.weaponBlocks.length) return "";
+      const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+      const list = (arr) => (arr && arr.length ? `<ul class="skill-list">${arr.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "");
+      return item.weaponBlocks.map((w) => {
+        const sk = w.skills || {};
+        return `
+        <div class="weapon-block">
+          <h4>${esc(w.label)} <span style="color:var(--muted2);font-weight:700;">${esc(w.nameEn)}</span></h4>
+          <p class="weapon-block-desc">${esc(w.detail)}</p>
+          <div class="skill-group"><strong>核心主动</strong>${list(sk.core)}</div>
+          <div class="skill-group"><strong>可选 / 情境</strong>${list(sk.flex)}</div>
+          <div class="skill-group"><strong>被动与成长</strong>${list(sk.passive)}</div>
+        </div>`;
+      }).join("");
+    }
+
+    function buildSearchBlob(item) {
+      const parts = [item.name, item.summary, item.crowd, item.weapons.join(" "), item.role.join(" "), item.tags.join(" ")];
+      (item.weaponBlocks || []).forEach((w) => {
+        parts.push(w.label, w.nameEn, w.detail);
+        const sk = w.skills || {};
+        ["core", "flex", "passive"].forEach((k) => (sk[k] || []).forEach((t) => parts.push(t)));
+      });
+      return parts.join(" ").toLowerCase();
+    }
 
     const dungeons = [
       { title: "Solo Dungeons 单人副本", level: "练机制 / 个人成长", summary: "适合熟悉职业循环、Boss技能和基础资源规划，是新手过渡到组队内容的训练场。", tags: ["单人", "成长", "练手"] },
@@ -659,11 +779,12 @@
       const q = keyword.trim().toLowerCase();
       const list = builds.filter(item => {
         const rolePass = currentRole === "全部" || item.role.includes(currentRole);
-        const text = [item.name, item.summary, item.crowd, item.weapons.join(" "), item.role.join(" "), item.tags.join(" ")].join(" ").toLowerCase();
+        const text = buildSearchBlob(item);
         return rolePass && (!q || text.includes(q));
       });
+      const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
       grid.innerHTML = list.map(item => `
-        <article class="card searchable" data-keywords="${item.name} ${item.role.join(' ')} ${item.weapons.join(' ')} ${item.tags.join(' ')} ${item.crowd}">
+        <article class="card searchable" data-keywords="${escAttr(buildSearchBlob(item))}">
           <h3>${item.name}</h3>
           <div class="weapon-line">${item.weapons.map(w => `<span class="weapon">${w}</span>`).join("")}</div>
           <p>${item.summary}</p>
@@ -671,6 +792,7 @@
             <div class="meta-box">适合人群<b>${item.crowd}</b></div>
             <div class="meta-box">上手难度<b>${item.difficulty}</b></div>
           </div>
+          <div class="build-weapons-detail">${buildWeaponBlocksHtml(item)}</div>
           <div class="tags">${item.role.map(r => `<span class="tag gold">${r}</span>`).join("")}${item.tags.map(t => `<span class="tag blue">${t}</span>`).join("")}</div>
         </article>
       `).join("");
