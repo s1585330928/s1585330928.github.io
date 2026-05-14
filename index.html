@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Throne and Liberty 中文攻略站 MVP | 构筑、副本、Boss、每日清单</title>
+  <meta name="description" content="Throne and Liberty 中文攻略站 MVP：新手开荒、武器构筑、副本机制、Boss时间、公会PVP、每日待办与SEO内容规划。" />
+  <style>
+    :root {
+      --bg: #070a12;
+      --bg2: #0d1322;
+      --card: rgba(255,255,255,0.072);
+      --card2: rgba(255,255,255,0.105);
+      --line: rgba(255,255,255,0.13);
+      --line2: rgba(241,197,107,0.32);
+      --text: #f7f3ea;
+      --muted: #aeb6c6;
+      --muted2: #7f8899;
+      --gold: #f1c56b;
+      --blue: #78a8ff;
+      --cyan: #79e6e4;
+      --green: #84f0b7;
+      --red: #ff7d7d;
+      --shadow: 0 26px 90px rgba(0,0,0,.44);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(120,168,255,.32), transparent 30%),
+        radial-gradient(circle at 88% 8%, rgba(241,197,107,.20), transparent 31%),
+        radial-gradient(circle at 55% 72%, rgba(121,230,228,.12), transparent 34%),
+        linear-gradient(180deg, var(--bg), var(--bg2) 48%, #060810);
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.65), transparent 78%);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    .container { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7,10,18,.76);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #101015;
+      background: conic-gradient(from 140deg, var(--gold), var(--blue), var(--cyan), var(--gold));
+      box-shadow: 0 0 34px rgba(241,197,107,.32);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero {
+      padding: 62px 0 28px;
+      display: grid;
+      grid-template-columns: 1.18fr .82fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.048));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main { padding: 44px; min-height: 430px; }
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      right: -130px;
+      bottom: -155px;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(241,197,107,.25), transparent 67%);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid var(--line2);
+      border-radius: 999px;
+      color: var(--gold);
+      background: rgba(241,197,107,.08);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    h1 {
+      margin: 22px 0 16px;
+      font-size: clamp(36px, 5vw, 66px);
+      line-height: 1.04;
+      letter-spacing: -.06em;
+    }
+    .hero-desc {
+      max-width: 740px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.85;
+      margin: 0 0 26px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+    .btn {
+      height: 48px;
+      border: 0;
+      border-radius: 15px;
+      padding: 0 18px;
+      font-weight: 900;
+      cursor: pointer;
+      color: #11131a;
+      background: linear-gradient(135deg, var(--gold), #ffe7a7);
+      box-shadow: 0 14px 32px rgba(241,197,107,.22);
+    }
+    .btn.secondary {
+      color: var(--text);
+      background: rgba(255,255,255,.07);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+    .search-box {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 20px;
+      background: rgba(0,0,0,.22);
+    }
+    .search-box input {
+      min-width: 0;
+      height: 48px;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      padding: 0 10px;
+    }
+    .search-box input::placeholder { color: #7f8899; }
+
+    .hero-side { padding: 24px; display: grid; gap: 14px; }
+    .side-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.055);
+    }
+    .side-card h3 { margin: 0 0 8px; font-size: 18px; }
+    .side-card p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .metric {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+    }
+    .metric b { display: block; color: var(--gold); font-size: 25px; margin-bottom: 4px; }
+    .metric span { color: var(--muted); font-size: 12px; }
+
+    .section { padding: 30px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .section-head h2 { margin: 0; font-size: 30px; letter-spacing: -.035em; }
+    .section-head p { margin: 8px 0 0; color: var(--muted); line-height: 1.7; }
+    .note { color: var(--muted2); font-size: 13px; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+      transition: .18s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(241,197,107,.48);
+      background: var(--card2);
+    }
+    .card h3 { margin: 0 0 10px; font-size: 19px; }
+    .card p { margin: 0 0 14px; color: var(--muted); line-height: 1.68; font-size: 14px; }
+    .card .small { color: var(--muted2); font-size: 13px; }
+    .num {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #101015;
+      font-weight: 900;
+      background: var(--gold);
+      margin-bottom: 14px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.15);
+      font-size: 12px;
+      line-height: 1;
+    }
+    .tag.gold { color: var(--gold); border-color: rgba(241,197,107,.36); }
+    .tag.blue { color: var(--blue); border-color: rgba(120,168,255,.36); }
+    .tag.green { color: var(--green); border-color: rgba(132,240,183,.36); }
+    .tag.red { color: var(--red); border-color: rgba(255,125,125,.36); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--muted);
+      background: rgba(255,255,255,.055);
+      cursor: pointer;
+      font-weight: 800;
+    }
+    .chip.active, .chip:hover { color: #11131a; background: var(--gold); border-color: transparent; }
+
+    .weapon-line { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+    .weapon {
+      padding: 8px 10px;
+      border-radius: 12px;
+      color: #dbe8ff;
+      border: 1px solid rgba(120,168,255,.30);
+      background: rgba(120,168,255,.11);
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .build-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 14px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .meta-box {
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.14);
+    }
+    .meta-box b { display: block; color: var(--text); margin-top: 4px; }
+
+    .table-wrap { overflow: auto; border-radius: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.055); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 16px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { color: var(--gold); font-size: 13px; background: rgba(0,0,0,.18); }
+    td { color: var(--muted); font-size: 14px; }
+    td strong { color: var(--text); }
+    tr:last-child td { border-bottom: 0; }
+
+    .todo-list { display: grid; gap: 10px; }
+    .todo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      color: var(--muted);
+      background: rgba(255,255,255,.045);
+    }
+    .todo input { width: 18px; height: 18px; accent-color: var(--gold); }
+    .todo.done { opacity: .55; text-decoration: line-through; }
+
+    .roadmap { display: grid; gap: 12px; }
+    .roadmap-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+    }
+    .roadmap-item b { color: var(--gold); }
+    .roadmap-item p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+    .empty {
+      display: none;
+      padding: 28px;
+      border: 1px dashed var(--line);
+      border-radius: 22px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .footer { padding: 40px 0 58px; text-align: center; color: var(--muted2); font-size: 13px; }
+
+    @media (max-width: 980px) {
+      .hero, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-main { padding: 30px; min-height: auto; }
+      .section-head { align-items: start; flex-direction: column; }
+      .search-box { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .roadmap-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Throne and Liberty 中文攻略站首页">
+        <span class="brand-mark">TL</span>
+        <span>TL中文攻略站</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#intent">需求分析</a>
+        <a href="#hot">热门入口</a>
+        <a href="#builds">构筑库</a>
+        <a href="#dungeons">副本攻略</a>
+        <a href="#boss">Boss时间</a>
+        <a href="#roadmap">上线规划</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="container hero">
+      <div class="panel hero-main">
+        <span class="eyebrow">Throne and Liberty 中文攻略站 MVP</span>
+        <h1>做玩家每天都会打开的攻略工具站。</h1>
+        <p class="hero-desc">第一版不要做成杂乱百科，先抓住玩家最高频的 6 个需求：新手开荒、武器构筑、副本机制、Boss时间、公会PVP、每日待办。页面结构先轻，内容入口先准，后续再扩展成数据库和详情页。</p>
+        <div class="hero-actions">
+          <a class="btn" href="#builds">查看构筑推荐</a>
+          <a class="btn secondary" href="#roadmap">看MVP上线计划</a>
+        </div>
+        <div class="search-box">
+          <input id="globalSearch" type="search" placeholder="搜索：弓匕、坦克、治疗、副本、Boss、公会、每日任务..." />
+          <button class="btn" onclick="runSearch()">快速查找</button>
+        </div>
+      </div>
+
+      <aside class="panel hero-side">
+        <div class="side-card">
+          <h3>站点定位</h3>
+          <p>中文玩家开荒 + 回流玩家查资料 + 公会成员查日程。不是新闻站，核心是“能快速解决问题”。</p>
+        </div>
+        <div class="metric-grid">
+          <div class="metric"><b>6</b><span>首屏核心需求</span></div>
+          <div class="metric"><b>8</b><span>首批构筑方向</span></div>
+          <div class="metric"><b>20</b><span>首批SEO页面</span></div>
+          <div class="metric"><b>1</b><span>单文件可部署</span></div>
+        </div>
+        <div class="side-card">
+          <h3>MVP判断标准</h3>
+          <p>不是功能越多越好，而是玩家能不能在 10 秒内找到：我玩什么、去哪打、怎么打、今天做什么。</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="intent" class="container section">
+      <div class="section-head">
+        <div>
+          <h2>用户需求分析：先按搜索意图建站</h2>
+          <p>玩家不是来“逛官网”的，而是带着具体问题来搜索。MVP 要围绕问题入口设计。</p>
+        </div>
+        <span class="note">适合后续拆成 SEO 栏目页</span>
+      </div>
+      <div class="grid-3">
+        <article class="card searchable" data-keywords="新手 入坑 开荒 升级 资源 装备 技能">
+          <span class="num">1</span>
+          <h3>新手入坑</h3>
+          <p>最关心选什么武器、升级路线、技能怎么点、装备要不要强化、哪些资源不要乱花。</p>
+          <div class="tags"><span class="tag gold">新手指南</span><span class="tag">开荒路线</span><span class="tag">避坑</span></div>
+        </article>
+        <article class="card searchable" data-keywords="build 构筑 武器 职业 弓匕 大剑 匕首 法杖 坦克 治疗 输出">
+          <span class="num">2</span>
+          <h3>构筑查询</h3>
+          <p>稳定搜索需求：PVE输出、PVP单挑、大规模团战、坦克、治疗、平民构筑。</p>
+          <div class="tags"><span class="tag blue">武器搭配</span><span class="tag">PVE</span><span class="tag">PVP</span></div>
+        </article>
+        <article class="card searchable" data-keywords="副本 地下城 机制 boss 打法 站位 灭团点">
+          <span class="num">3</span>
+          <h3>副本机制</h3>
+          <p>玩家进本前需要快速看 Boss 技能、站位、打断点、灭团点和队伍职责。</p>
+          <div class="tags"><span class="tag green">机制速查</span><span class="tag">站位</span><span class="tag">队伍配置</span></div>
+        </article>
+        <article class="card searchable" data-keywords="世界boss archboss 时间 掉落 活动 日程 服务器">
+          <span class="num">4</span>
+          <h3>Boss / 活动时间</h3>
+          <p>适合做工具页：世界 Boss、Archboss、动态事件、公会活动提醒和掉落查询。</p>
+          <div class="tags"><span class="tag red">时间表</span><span class="tag">掉落</span><span class="tag">提醒</span></div>
+        </article>
+        <article class="card searchable" data-keywords="公会 pvp 攻城 团战 boonstone riftstone 战场">
+          <span class="num">5</span>
+          <h3>公会 / PVP</h3>
+          <p>中后期玩家重点：攻城、公会战、Boonstone、Riftstone、团战职业分工。</p>
+          <div class="tags"><span class="tag blue">公会战</span><span class="tag">团战定位</span><span class="tag">PVP</span></div>
+        </article>
+        <article class="card searchable" data-keywords="每日 每周 checklist 任务 材料 合约 代币">
+          <span class="num">6</span>
+          <h3>每日清单</h3>
+          <p>留存型功能：每天上线该做什么、哪些任务优先、材料怎么规划。</p>
+          <div class="tags"><span class="tag gold">留存工具</span><span class="tag">每日</span><span class="tag">每周</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="hot" class="container section">
+      <div class="section-head">
+        <div>
+          <h2>首页热门入口</h2>
+          <p>首页不要堆太多文字，先给玩家 4 个最常点击的入口。</p>
+        </div>
+      </div>
+      <div class="grid-4">
+        <a class="card searchable" href="#builds" data-keywords="武器 构筑 build 推荐">
+          <h3>武器构筑库</h3>
+          <p>按 PVE、PVP、坦克、治疗、新手推荐筛选。</p>
+          <span class="tag gold">高搜索</span>
+        </a>
+        <a class="card searchable" href="#dungeons" data-keywords="副本 机制 攻略 地下城 boss">
+          <h3>副本机制速查</h3>
+          <p>进本前 1 分钟看懂灭团点和职责。</p>
+          <span class="tag green">高转化</span>
+        </a>
+        <a class="card searchable" href="#boss" data-keywords="boss 时间 世界boss archboss 掉落">
+          <h3>Boss时间表</h3>
+          <p>后续可接 JSON 或后台，做成站点留存工具。</p>
+          <span class="tag red">工具型</span>
+        </a>
+        <a class="card searchable" href="#daily" data-keywords="每日 清单 每周 任务 checklist">
+          <h3>每日待办</h3>
+          <p>玩家每天打开一次，适合提升回访。</p>
+          <span class="tag blue">留存型</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="builds" class="container section">
+      <div class="section-head">
+        <div>
+          <h2>武器构筑速查</h2>
+          <p>这一块是攻略站的核心流量入口。MVP 先做列表和筛选，后续每个构筑扩展为详情页。</p>
+        </div>
+      </div>
+      <div class="chips" id="buildFilters">
+        <button class="chip active" data-role="全部">全部</button>
+        <button class="chip" data-role="PVE输出">PVE输出</button>
+        <button class="chip" data-role="PVP">PVP</button>
+        <button class="chip" data-role="坦克">坦克</button>
+        <button class="chip" data-role="治疗">治疗</button>
+        <button class="chip" data-role="新手推荐">新手推荐</button>
+      </div>
+      <div class="grid-3" id="buildGrid"></div>
+      <div class="empty" id="buildEmpty">没有匹配到构筑，可以换个关键词试试。</div>
+    </section>
+
+    <section id="dungeons" class="container section">
+      <div class="section-head">
+        <div>
+          <h2>副本攻略入口</h2>
+          <p>先做“副本类型入口”，后续再补每个副本的 Boss 技能、机制图、站位图和视频。</p>
+        </div>
+      </div>
+      <div class="grid-3" id="dungeonGrid"></div>
+    </section>
+
+    <section id="boss" class="container section">
+      <div class="section-head">
+        <div>
+          <h2>Boss / 活动时间表</h2>
+          <p>当前是前端展示结构。正式上线时，建议用 JSON 或后台维护服务器时间、掉落和提醒。</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>内容</th>
+              <th>类型</th>
+              <th>示例时间</th>
+              <th>页面价值</th>
+            </tr>
+          </thead>
+          <tbody id="bossTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="daily" class="container section">
+      <div class="section-head">
+        <div>
+          <h2>每日 / 每周待办</h2>
+          <p>这个功能很适合做站点留存，玩家每天来勾一次，就会形成使用习惯。</p>
+        </div>
+        <button class="btn secondary" onclick="resetTodos()">重置清单</button>
+      </div>
+      <div class="grid-2">
+        <div class="panel" style="padding:22px;">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div><h2 style="font-size:22px;">今日优先</h2><p>本地保存勾选状态</p></div>
+          </div>
+          <div class="todo-list" id="todoList"></div>
+        </div>
+        <div class="panel" style="padding:22px;">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div><h2 style="font-size:22px;">开荒路线</h2><p>适合扩展成新手专题页</p></div>
+          </div>
+          <div class="roadmap">
+            <div class="roadmap-item"><b>第1步</b><p>先确定主玩法：PVE输出、PVP、坦克或治疗。不要一开始平均投入所有武器。</p></div>
+            <div class="roadmap-item"><b>第2步</b><p>只优先升级核心技能和常用武器，前期材料不要分散消耗。</p></div>
+            <div class="roadmap-item"><b>第3步</b><p>进副本前先看机制速查，重点记住打断点、躲避点和团队职责。</p></div>
+            <div class="roadmap-item"><b>第4步</b><p>尽早加入活跃公会，中后期 Boss、团战和资源获取都和公会强相关。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="container section">
+      <div class="section-head">
+        <div>
+          <h2>MVP上线规划</h2>
+          <p>第一版目标不是一次性做完，而是用最少页面验证搜索流量和玩家需求。</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="panel" style="padding:22px;">
+          <h3>首批页面建议</h3>
+          <div class="roadmap" style="margin-top:14px;">
+            <div class="roadmap-item"><b>构筑页</b><p>先做 8-12 个武器组合页：标题固定为“武器A+武器B 构筑推荐 / 技能 / 装备词条”。</p></div>
+            <div class="roadmap-item"><b>副本页</b><p>先做 6-10 个副本机制速查页：Boss技能、灭团点、站位、推荐队伍。</p></div>
+            <div class="roadmap-item"><b>工具页</b><p>Boss时间表、每日清单、材料优先级，这类页面更容易提高回访。</p></div>
+            <div class="roadmap-item"><b>新手页</b><p>新手入坑、升级路线、资源避坑、平民玩家推荐，适合承接泛搜索。</p></div>
+          </div>
+        </div>
+        <div class="panel" style="padding:22px;">
+          <h3>内容模板</h3>
+          <div class="table-wrap" style="margin-top:14px;">
+            <table>
+              <thead><tr><th>页面类型</th><th>必须包含</th></tr></thead>
+              <tbody>
+                <tr><td><strong>构筑详情页</strong></td><td>适合人群、优缺点、技能优先级、装备词条、PVE/PVP手法</td></tr>
+                <tr><td><strong>副本攻略页</strong></td><td>准入建议、Boss技能、灭团点、打法流程、队伍职责</td></tr>
+                <tr><td><strong>Boss页面</strong></td><td>刷新时间、区域、Peace/Conflict、掉落、注意事项</td></tr>
+                <tr><td><strong>新手页面</strong></td><td>入坑建议、资源规划、常见误区、推荐路线、下一步链接</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p>非官方 Throne and Liberty 中文攻略站 MVP 示例。正式上线前请替换为原创攻略内容，并避免直接使用未经授权的游戏素材。</p>
+  </footer>
+
+  <script>
+    const builds = [
+      { name: "长弓 + 匕首", role: ["PVE输出", "PVP", "新手推荐"], weapons: ["Longbow", "Dagger"], difficulty: "中", crowd: "喜欢远程输出的新手", summary: "远程输出手感好，匕首提供爆发和机动性，适合安全距离输出与灵活走位。", tags: ["远程", "爆发", "机动"] },
+      { name: "剑盾 + 魔杖", role: ["坦克", "新手推荐"], weapons: ["Sword & Shield", "Wand"], difficulty: "低-中", crowd: "副本承伤 / 稳定开荒", summary: "偏生存和团队功能，容错率高，适合副本承伤、公会活动和稳定开荒。", tags: ["承伤", "团队", "容错"] },
+      { name: "法杖 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Staff", "Dagger"], difficulty: "中-高", crowd: "追求爆发伤害", summary: "法术爆发强，适合清怪和打输出，但对站位、技能循环和资源管理要求更高。", tags: ["法系", "爆发", "AOE"] },
+      { name: "大剑 + 匕首", role: ["PVP", "PVE输出"], weapons: ["Greatsword", "Dagger"], difficulty: "中", crowd: "近战切入玩家", summary: "近战压制能力强，适合小规模PVP和切后排，但需要掌握进场和撤退时机。", tags: ["近战", "控制", "切入"] },
+      { name: "弩 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Crossbow", "Dagger"], difficulty: "高", crowd: "愿意练手法的玩家", summary: "高频输出与爆发组合，操作更吃熟练度，上限高但容错相对低。", tags: ["高频", "爆发", "手法"] },
+      { name: "魔杖 + 法杖", role: ["治疗", "PVE输出"], weapons: ["Wand", "Staff"], difficulty: "中", crowd: "组队辅助玩家", summary: "兼顾治疗、辅助和法术输出，适合固定队、公会队和喜欢团队贡献的玩家。", tags: ["治疗", "辅助", "法系"] },
+      { name: "剑盾 + 大剑", role: ["坦克", "PVP"], weapons: ["Sword & Shield", "Greatsword"], difficulty: "中", crowd: "前排控制玩家", summary: "承伤、控制和近战压制兼顾，适合团战前排和需要稳定开团的队伍。", tags: ["前排", "控制", "团战"] },
+      { name: "长弓 + 法杖", role: ["PVE输出", "新手推荐"], weapons: ["Longbow", "Staff"], difficulty: "中", crowd: "远程站桩输出", summary: "远程输出覆盖面广，适合喜欢稳定输出和副本刷图的玩家，操作压力相对适中。", tags: ["远程", "刷图", "稳定"] }
+    ];
+
+    const dungeons = [
+      { title: "Solo Dungeons 单人副本", level: "练机制 / 个人成长", summary: "适合熟悉职业循环、Boss技能和基础资源规划，是新手过渡到组队内容的训练场。", tags: ["单人", "成长", "练手"] },
+      { title: "Co-Op Dungeons 组队副本", level: "6人队伍 / 装备获取", summary: "建议做成机制速查页：Boss技能、站位、打断点、灭团点和推荐队伍配置。", tags: ["6人", "机制", "掉落"] },
+      { title: "3-Star Dungeons 高阶副本", level: "满级后 / 高战力挑战", summary: "适合放详细攻略、视频、站位图和职业职责拆解，是后续SEO重点页面。", tags: ["高阶", "挑战", "SEO重点"] }
+    ];
+
+    const bosses = [
+      { name: "世界Boss", type: "Peace / Conflict", time: "按服务器日程", value: "适合做刷新提醒、掉落表和路线建议" },
+      { name: "Archboss", type: "大型Boss / 公会内容", time: "按服务器日程", value: "适合做单独专题页，承接高价值搜索" },
+      { name: "动态事件", type: "PVE / PVP 活动", time: "循环刷新", value: "适合做活动日历，提升玩家回访" },
+      { name: "公会活动", type: "Boonstone / Riftstone", time: "按公会安排", value: "适合做公会战准备清单和职业分工" }
+    ];
+
+    const todos = [
+      "查看今日活动与 Boss 时间",
+      "完成日常合约 / 关键资源任务",
+      "消耗副本次数或重要代币",
+      "检查装备词条与技能成长优先级",
+      "参加公会活动或确认公会通知",
+      "整理背包、材料和拍卖行物品"
+    ];
+
+    let currentRole = "全部";
+
+    function renderBuilds(keyword = "") {
+      const grid = document.getElementById("buildGrid");
+      const empty = document.getElementById("buildEmpty");
+      const q = keyword.trim().toLowerCase();
+      const list = builds.filter(item => {
+        const rolePass = currentRole === "全部" || item.role.includes(currentRole);
+        const text = [item.name, item.summary, item.crowd, item.weapons.join(" "), item.role.join(" "), item.tags.join(" ")].join(" ").toLowerCase();
+        return rolePass && (!q || text.includes(q));
+      });
+      grid.innerHTML = list.map(item => `
+        <article class="card searchable" data-keywords="${item.name} ${item.role.join(' ')} ${item.weapons.join(' ')} ${item.tags.join(' ')} ${item.crowd}">
+          <h3>${item.name}</h3>
+          <div class="weapon-line">${item.weapons.map(w => `<span class="weapon">${w}</span>`).join("")}</div>
+          <p>${item.summary}</p>
+          <div class="build-meta">
+            <div class="meta-box">适合人群<b>${item.crowd}</b></div>
+            <div class="meta-box">上手难度<b>${item.difficulty}</b></div>
+          </div>
+          <div class="tags">${item.role.map(r => `<span class="tag gold">${r}</span>`).join("")}${item.tags.map(t => `<span class="tag blue">${t}</span>`).join("")}</div>
+        </article>
+      `).join("");
+      empty.style.display = list.length ? "none" : "block";
+    }
+
+    function renderDungeons() {
+      const grid = document.getElementById("dungeonGrid");
+      grid.innerHTML = dungeons.map(item => `
+        <article class="card searchable" data-keywords="${item.title} ${item.level} ${item.tags.join(' ')} 副本 地下城 boss 机制">
+          <h3>${item.title}</h3>
+          <p>${item.summary}</p>
+          <div class="tags"><span class="tag green">${item.level}</span>${item.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        </article>
+      `).join("");
+    }
+
+    function renderBosses() {
+      const tbody = document.getElementById("bossTable");
+      tbody.innerHTML = bosses.map(item => `
+        <tr class="searchable" data-keywords="${item.name} ${item.type} boss archboss 活动 时间 掉落 公会">
+          <td><strong>${item.name}</strong></td>
+          <td>${item.type}</td>
+          <td>${item.time}</td>
+          <td>${item.value}</td>
+        </tr>
+      `).join("");
+    }
+
+    function renderTodos() {
+      const saved = JSON.parse(localStorage.getItem("tl-mvp-todos") || "{}");
+      const list = document.getElementById("todoList");
+      list.innerHTML = todos.map((todo, index) => `
+        <label class="todo ${saved[index] ? 'done' : ''}">
+          <input type="checkbox" ${saved[index] ? 'checked' : ''} onchange="toggleTodo(${index}, this.checked)" />
+          <span>${todo}</span>
+        </label>
+      `).join("");
+    }
+
+    function toggleTodo(index, checked) {
+      const saved = JSON.parse(localStorage.getItem("tl-mvp-todos") || "{}");
+      saved[index] = checked;
+      localStorage.setItem("tl-mvp-todos", JSON.stringify(saved));
+      renderTodos();
+    }
+
+    function resetTodos() {
+      localStorage.removeItem("tl-mvp-todos");
+      renderTodos();
+    }
+
+    function runSearch() {
+      const q = document.getElementById("globalSearch").value.trim().toLowerCase();
+      renderBuilds(q);
+      document.querySelectorAll(".searchable").forEach(el => {
+        const text = (el.innerText + " " + (el.dataset.keywords || "")).toLowerCase();
+        el.style.display = (!q || text.includes(q)) ? "" : "none";
+      });
+    }
+
+    document.getElementById("globalSearch").addEventListener("input", runSearch);
+    document.querySelectorAll("#buildFilters .chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#buildFilters .chip").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentRole = btn.dataset.role;
+        renderBuilds(document.getElementById("globalSearch").value);
+      });
+    });
+
+    renderBuilds();
+    renderDungeons();
+    renderBosses();
+    renderTodos();
+  </script>
+</body>
+</html>
