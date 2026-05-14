@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今日指挥台 | TL中文攻略站</title>
+  <meta name="description" content="待办、收藏构筑、周目标与活动占位一页聚合；支持打印简报与导出本地数据。" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="TL中文攻略站首页">
+        <span class="brand-mark">TL</span>
+        <span>TL中文攻略站</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="today.html">今日</a>
+        <a href="builds.html">构筑库</a>
+        <a href="dungeons.html">副本</a>
+        <a href="boss.html">Boss与活动</a>
+        <a href="daily.html">每日待办</a>
+        <a href="glossary.html">术语</a>
+        <a href="roadmap.html">站点规划</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="todayRoot" class="today-page">
+    <div class="container page-lead">
+      <h1>今日指挥台</h1>
+      <p>把「今天要做什么」与「我常玩的构筑」放在同一屏；待办与 <a href="daily.html">每日页</a> 共用本地勾选状态。适合设为浏览器起始页。</p>
+      <p class="data-verified" data-site-meta></p>
+      <p class="today-tz" id="todayTzLine"></p>
+    </div>
+
+    <section class="container section today-toolbar no-print" style="padding-top:0;">
+      <button type="button" class="btn" onclick="window.print()">打印指挥简报</button>
+      <button type="button" class="btn secondary" onclick="exportLocalData()">导出本地数据（收藏+待办）</button>
+      <a class="btn secondary" href="boss.html">完整 Boss 表</a>
+      <a class="btn secondary" href="builds.html">去构筑库收藏</a>
+    </section>
+
+    <section class="container section" style="padding-top:0;">
+      <div class="grid-2 today-stack">
+        <div class="panel today-panel">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div>
+              <h2 style="font-size:22px;margin:0;">今日优先</h2>
+              <p style="margin:8px 0 0;color:var(--muted);">与每日页同步；勾选写入本机。</p>
+            </div>
+          </div>
+          <div class="todo-list todo-root"></div>
+        </div>
+        <div class="panel today-panel">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div>
+              <h2 style="font-size:22px;margin:0;">示例倒计时</h2>
+              <p style="margin:8px 0 0;color:var(--muted);">正式运营请替换 data.js 中 <code>demoCountdown</code> 为真实开服时间。</p>
+            </div>
+          </div>
+          <p class="today-countdown-title" id="todayCountdownTitle"></p>
+          <p class="today-countdown-digits" id="todayCountdown"></p>
+          <h3 class="today-subhead">本周目标（示意）</h3>
+          <div class="table-wrap">
+            <table class="today-goals-table">
+              <thead>
+                <tr><th>目标</th><th>还缺什么</th><th>主要来源</th></tr>
+              </thead>
+              <tbody id="weeklyGoalsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="grid-2 today-stack">
+        <div class="panel today-panel">
+          <h2 style="font-size:22px;margin:0 0 12px;">活动占位速览</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>内容</th><th>时间</th><th>说明</th></tr></thead>
+              <tbody id="todayBossMini"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel today-panel">
+          <h2 style="font-size:22px;margin:0 0 12px;">收藏构筑</h2>
+          <div id="pinnedBuilds"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section print-briefing-section">
+      <div class="panel today-panel print-briefing">
+        <h2 style="font-size:20px;margin:0 0 10px;">指挥简报（打印区域）</h2>
+        <p style="color:var(--muted);font-size:14px;margin:0 0 12px;">使用浏览器打印（Ctrl+P）时本块会突出显示；可在打印对话框中选「仅选区」或依赖样式隐藏导航。</p>
+        <div class="print-briefing-body" id="printBriefingBody"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer no-print">
+    <nav class="footer-nav" aria-label="站点地图">
+      <a href="index.html">首页</a>
+      <a href="today.html">今日</a>
+      <a href="builds.html">构筑</a>
+      <a href="dungeons.html">副本</a>
+      <a href="boss.html">Boss</a>
+      <a href="daily.html">每日</a>
+      <a href="glossary.html">术语</a>
+      <a href="roadmap.html">规划</a>
+      <a href="changelog.html">更新</a>
+    </nav>
+    <p>非官方 Throne and Liberty 中文攻略站。</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

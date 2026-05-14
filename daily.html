@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>每日待办 | TL中文攻略站</title>
+  <meta name="description" content="Throne and Liberty 每日与每周待办清单，勾选状态保存在浏览器本地。" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="TL中文攻略站首页">
+        <span class="brand-mark">TL</span>
+        <span>TL中文攻略站</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="today.html">今日</a>
+        <a href="builds.html">构筑库</a>
+        <a href="dungeons.html">副本</a>
+        <a href="boss.html">Boss与活动</a>
+        <a href="daily.html">每日待办</a>
+        <a href="glossary.html">术语</a>
+        <a href="roadmap.html">站点规划</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container page-lead">
+      <h1>每日 / 每周待办</h1>
+      <p>勾选状态使用浏览器 localStorage 保存，仅本机可见；换设备或清除站点数据会重置。</p>
+      <p class="data-verified" data-site-meta></p>
+    </div>
+
+    <section class="container section" style="padding-top:0;">
+      <div class="section-head" style="margin-bottom:18px;">
+        <div></div>
+        <button type="button" class="btn secondary" onclick="resetTodos()">重置清单</button>
+      </div>
+      <div class="grid-2">
+        <div class="panel" style="padding:22px;">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div><h2 style="font-size:22px;margin:0;">今日优先</h2><p style="margin:8px 0 0;">本地保存勾选</p></div>
+          </div>
+          <div class="todo-list todo-root" id="todoList"></div>
+        </div>
+        <div class="panel" style="padding:22px;">
+          <div class="section-head" style="margin-bottom:12px;">
+            <div><h2 style="font-size:22px;margin:0;">开荒路线</h2><p style="margin:8px 0 0;">可扩展为新手专题</p></div>
+          </div>
+          <div class="roadmap">
+            <div class="roadmap-item"><b>第1步</b><p>先确定主玩法：PVE 输出、PVP、坦克或治疗，避免平均投入所有武器。</p></div>
+            <div class="roadmap-item"><b>第2步</b><p>优先升级核心技能与主武器，前期材料不要分散消耗。</p></div>
+            <div class="roadmap-item"><b>第3步</b><p>进本前看机制速查：打断点、躲避点与团队职责。</p></div>
+            <div class="roadmap-item"><b>第4步</b><p>尽早加入活跃公会，中后期内容与资源与公会强相关。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <nav class="footer-nav" aria-label="站点地图">
+      <a href="index.html">首页</a>
+      <a href="today.html">今日</a>
+      <a href="builds.html">构筑</a>
+      <a href="dungeons.html">副本</a>
+      <a href="boss.html">Boss</a>
+      <a href="daily.html">每日</a>
+      <a href="glossary.html">术语</a>
+      <a href="roadmap.html">规划</a>
+      <a href="changelog.html">更新</a>
+    </nav>
+    <p>非官方 Throne and Liberty 中文攻略站。</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

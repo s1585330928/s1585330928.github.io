@@ -3,448 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Throne and Liberty 中文攻略站 MVP | 构筑、副本、Boss、每日清单</title>
-  <meta name="description" content="Throne and Liberty 中文攻略站 MVP：新手开荒、武器构筑、副本机制、Boss时间、公会PVP、每日待办与SEO内容规划。" />
-  <style>
-    :root {
-      --bg: #070a12;
-      --bg2: #0d1322;
-      --card: rgba(255,255,255,0.072);
-      --card2: rgba(255,255,255,0.105);
-      --line: rgba(255,255,255,0.13);
-      --line2: rgba(241,197,107,0.32);
-      --text: #f7f3ea;
-      --muted: #aeb6c6;
-      --muted2: #7f8899;
-      --gold: #f1c56b;
-      --blue: #78a8ff;
-      --cyan: #79e6e4;
-      --green: #84f0b7;
-      --red: #ff7d7d;
-      --shadow: 0 26px 90px rgba(0,0,0,.44);
-      --radius: 24px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(120,168,255,.32), transparent 30%),
-        radial-gradient(circle at 88% 8%, rgba(241,197,107,.20), transparent 31%),
-        radial-gradient(circle at 55% 72%, rgba(121,230,228,.12), transparent 34%),
-        linear-gradient(180deg, var(--bg), var(--bg2) 48%, #060810);
-      min-height: 100vh;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,.65), transparent 78%);
-    }
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-    .container { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(7,10,18,.76);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);
-    }
-    .nav {
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: .02em;
-    }
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: #101015;
-      background: conic-gradient(from 140deg, var(--gold), var(--blue), var(--cyan), var(--gold));
-      box-shadow: 0 0 34px rgba(241,197,107,.32);
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    .hero {
-      padding: 62px 0 28px;
-      display: grid;
-      grid-template-columns: 1.18fr .82fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-    .panel {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.048));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-main { padding: 44px; min-height: 430px; }
-    .hero-main::after {
-      content: "";
-      position: absolute;
-      right: -130px;
-      bottom: -155px;
-      width: 430px;
-      height: 430px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(241,197,107,.25), transparent 67%);
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border: 1px solid var(--line2);
-      border-radius: 999px;
-      color: var(--gold);
-      background: rgba(241,197,107,.08);
-      font-size: 13px;
-      font-weight: 800;
-    }
-    h1 {
-      margin: 22px 0 16px;
-      font-size: clamp(36px, 5vw, 66px);
-      line-height: 1.04;
-      letter-spacing: -.06em;
-    }
-    .hero-desc {
-      max-width: 740px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.85;
-      margin: 0 0 26px;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-      position: relative;
-      z-index: 1;
-    }
-    .btn {
-      height: 48px;
-      border: 0;
-      border-radius: 15px;
-      padding: 0 18px;
-      font-weight: 900;
-      cursor: pointer;
-      color: #11131a;
-      background: linear-gradient(135deg, var(--gold), #ffe7a7);
-      box-shadow: 0 14px 32px rgba(241,197,107,.22);
-    }
-    .btn.secondary {
-      color: var(--text);
-      background: rgba(255,255,255,.07);
-      border: 1px solid var(--line);
-      box-shadow: none;
-    }
-    .search-box {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      padding: 10px;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 20px;
-      background: rgba(0,0,0,.22);
-    }
-    .search-box input {
-      min-width: 0;
-      height: 48px;
-      border: 0;
-      outline: 0;
-      color: var(--text);
-      background: transparent;
-      padding: 0 10px;
-    }
-    .search-box input::placeholder { color: #7f8899; }
-
-    .hero-side { padding: 24px; display: grid; gap: 14px; }
-    .side-card {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255,255,255,.055);
-    }
-    .side-card h3 { margin: 0 0 8px; font-size: 18px; }
-    .side-card p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
-    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .metric {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--line);
-    }
-    .metric b { display: block; color: var(--gold); font-size: 25px; margin-bottom: 4px; }
-    .metric span { color: var(--muted); font-size: 12px; }
-
-    .section { padding: 30px 0; }
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-    .section-head h2 { margin: 0; font-size: 30px; letter-spacing: -.035em; }
-    .section-head p { margin: 8px 0 0; color: var(--muted); line-height: 1.7; }
-    .note { color: var(--muted2); font-size: 13px; }
-
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .card {
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: var(--card);
-      transition: .18s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(241,197,107,.48);
-      background: var(--card2);
-    }
-    .card h3 { margin: 0 0 10px; font-size: 19px; }
-    .card p { margin: 0 0 14px; color: var(--muted); line-height: 1.68; font-size: 14px; }
-    .card .small { color: var(--muted2); font-size: 13px; }
-    .num {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      color: #101015;
-      font-weight: 900;
-      background: var(--gold);
-      margin-bottom: 14px;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.15);
-      font-size: 12px;
-      line-height: 1;
-    }
-    .tag.gold { color: var(--gold); border-color: rgba(241,197,107,.36); }
-    .tag.blue { color: var(--blue); border-color: rgba(120,168,255,.36); }
-    .tag.green { color: var(--green); border-color: rgba(132,240,183,.36); }
-    .tag.red { color: var(--red); border-color: rgba(255,125,125,.36); }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
-    .chip {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 14px;
-      color: var(--muted);
-      background: rgba(255,255,255,.055);
-      cursor: pointer;
-      font-weight: 800;
-    }
-    .chip.active, .chip:hover { color: #11131a; background: var(--gold); border-color: transparent; }
-
-    .weapon-line { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
-    .weapon {
-      padding: 8px 10px;
-      border-radius: 12px;
-      color: #dbe8ff;
-      border: 1px solid rgba(120,168,255,.30);
-      background: rgba(120,168,255,.11);
-      font-size: 13px;
-      font-weight: 900;
-    }
-    .build-meta {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 14px 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .meta-box {
-      padding: 10px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.14);
-    }
-    .meta-box b { display: block; color: var(--text); margin-top: 4px; }
-
-    .build-weapons-detail {
-      margin-top: 16px;
-      display: grid;
-      gap: 12px;
-      text-align: left;
-    }
-    .weapon-block {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px 14px 12px;
-      background: rgba(0,0,0,.16);
-    }
-    .weapon-block h4 {
-      margin: 0 0 8px;
-      font-size: 15px;
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: .02em;
-    }
-    .weapon-block .weapon-block-desc {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-    .weapon-skill-table-wrap {
-      margin-top: 10px;
-      overflow: auto;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.12);
-    }
-    .weapon-skill-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-      min-width: 260px;
-    }
-    .weapon-skill-table th,
-    .weapon-skill-table td {
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      vertical-align: top;
-    }
-    .weapon-skill-table th {
-      color: var(--gold);
-      background: rgba(0,0,0,.22);
-      font-size: 11px;
-      font-weight: 900;
-    }
-    .weapon-skill-table tr:last-child td { border-bottom: 0; }
-    .weapon-skill-table .skill-cat {
-      color: var(--cyan);
-      font-weight: 800;
-      white-space: nowrap;
-      width: 7.5em;
-    }
-    .weapon-skill-table .skill-name {
-      color: var(--text);
-      font-weight: 600;
-      letter-spacing: .015em;
-    }
-
-    .table-wrap { overflow: auto; border-radius: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.055); }
-    table { width: 100%; border-collapse: collapse; min-width: 760px; }
-    th, td { padding: 16px; border-bottom: 1px solid var(--line); text-align: left; }
-    th { color: var(--gold); font-size: 13px; background: rgba(0,0,0,.18); }
-    td { color: var(--muted); font-size: 14px; }
-    td strong { color: var(--text); }
-    tr:last-child td { border-bottom: 0; }
-
-    .todo-list { display: grid; gap: 10px; }
-    .todo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 14px;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      color: var(--muted);
-      background: rgba(255,255,255,.045);
-    }
-    .todo input { width: 18px; height: 18px; accent-color: var(--gold); }
-    .todo.done { opacity: .55; text-decoration: line-through; }
-
-    .roadmap { display: grid; gap: 12px; }
-    .roadmap-item {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 14px;
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.05);
-    }
-    .roadmap-item b { color: var(--gold); }
-    .roadmap-item p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
-
-    .empty {
-      display: none;
-      padding: 28px;
-      border: 1px dashed var(--line);
-      border-radius: 22px;
-      color: var(--muted);
-      text-align: center;
-    }
-    .footer { padding: 40px 0 58px; text-align: center; color: var(--muted2); font-size: 13px; }
-
-    @media (max-width: 980px) {
-      .hero, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .hero-main { padding: 30px; min-height: auto; }
-      .section-head { align-items: start; flex-direction: column; }
-      .search-box { grid-template-columns: 1fr; }
-      .btn { width: 100%; }
-      .roadmap-item { grid-template-columns: 1fr; }
-    }
-  </style>
+  <title>TL中文攻略站 | Throne and Liberty 构筑 · 副本 · Boss · 每日清单</title>
+  <meta name="description" content="Throne and Liberty 中文攻略站：武器构筑、副本入口、Boss与活动时间、每日待办。纯静态页面，可直接部署到 GitHub Pages。" />
+  <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="Throne and Liberty 中文攻略站首页">
+      <a class="brand" href="index.html" aria-label="TL中文攻略站首页">
         <span class="brand-mark">TL</span>
         <span>TL中文攻略站</span>
       </a>
       <nav class="nav-links" aria-label="主导航">
-        <a href="#intent">需求分析</a>
-        <a href="#hot">热门入口</a>
-        <a href="#builds">构筑库</a>
-        <a href="#dungeons">副本攻略</a>
-        <a href="#boss">Boss时间</a>
-        <a href="#roadmap">上线规划</a>
+        <a href="index.html">首页</a>
+        <a href="today.html">今日</a>
+        <a href="builds.html">构筑库</a>
+        <a href="dungeons.html">副本</a>
+        <a href="boss.html">Boss与活动</a>
+        <a href="daily.html">每日待办</a>
+        <a href="glossary.html">术语</a>
+        <a href="roadmap.html">站点规划</a>
       </nav>
     </div>
   </header>
@@ -452,33 +30,38 @@
   <main id="top">
     <section class="container hero">
       <div class="panel hero-main">
-        <span class="eyebrow">Throne and Liberty 中文攻略站 MVP</span>
-        <h1>做玩家每天都会打开的攻略工具站。</h1>
-        <p class="hero-desc">第一版不要做成杂乱百科，先抓住玩家最高频的 6 个需求：新手开荒、武器构筑、副本机制、Boss时间、公会PVP、每日待办。页面结构先轻，内容入口先准，后续再扩展成数据库和详情页。</p>
+        <span class="eyebrow">
+          <span class="eyebrow-en">Throne and Liberty</span>
+          <span class="eyebrow-zh">中文攻略站</span>
+        </span>
+        <p class="game-tagline">开放世界 · 双持武器 · 公会攻城与野外大型战 · 昼夜与天气同在</p>
+        <h1>王座与自由：把攻略做成你每天会打开的工具。</h1>
+        <p class="hero-desc">从「我玩什么武器」到「今天打什么、公会几点集合」，用构筑表、副本入口、Boss 与活动时间、每日清单把高频问题一次摆齐。全站静态，适合挂在 GitHub Pages 随时更新。</p>
         <div class="hero-actions">
-          <a class="btn" href="#builds">查看构筑推荐</a>
-          <a class="btn secondary" href="#roadmap">看MVP上线计划</a>
+          <a class="btn" href="today.html">今日指挥台</a>
+          <a class="btn secondary" href="builds.html">进入构筑库</a>
+          <a class="btn secondary" href="daily.html">每日待办</a>
         </div>
         <div class="search-box">
-          <input id="globalSearch" type="search" placeholder="搜索：弓匕、坦克、治疗、副本、Boss、公会、每日任务..." />
-          <button class="btn" onclick="runSearch()">快速查找</button>
+          <input id="globalSearch" type="search" placeholder="在本页筛选：新手、构筑、副本、Boss、每日…" />
+          <button type="button" class="btn" id="homeSearchBtn">筛选</button>
         </div>
       </div>
 
       <aside class="panel hero-side">
         <div class="side-card">
           <h3>站点定位</h3>
-          <p>中文玩家开荒 + 回流玩家查资料 + 公会成员查日程。不是新闻站，核心是“能快速解决问题”。</p>
+          <p>中文玩家开荒、回流查资料、公会排期。不是新闻站，核心是「能快速解决问题」。</p>
         </div>
         <div class="metric-grid">
-          <div class="metric"><b>6</b><span>首屏核心需求</span></div>
-          <div class="metric"><b>8</b><span>首批构筑方向</span></div>
-          <div class="metric"><b>20</b><span>首批SEO页面</span></div>
-          <div class="metric"><b>1</b><span>单文件可部署</span></div>
+          <div class="metric"><b>6</b><span>核心需求模块</span></div>
+          <div class="metric"><b>8</b><span>武器构筑示例</span></div>
+          <div class="metric"><b>9</b><span>独立栏目页</span></div>
+          <div class="metric"><b>0</b><span>构建工具依赖</span></div>
         </div>
         <div class="side-card">
-          <h3>MVP判断标准</h3>
-          <p>不是功能越多越好，而是玩家能不能在 10 秒内找到：我玩什么、去哪打、怎么打、今天做什么。</p>
+          <h3>部署方式</h3>
+          <p>将仓库推送到 GitHub，在仓库 Settings → Pages 中选择分支与根目录即可发布。链接请使用本站相对路径，以支持子目录站点（<code>username.github.io/仓库名/</code>）。</p>
         </div>
       </aside>
     </section>
@@ -487,46 +70,300 @@
       <div class="section-head">
         <div>
           <h2>用户需求分析：先按搜索意图建站</h2>
-          <p>玩家不是来“逛官网”的，而是带着具体问题来搜索。MVP 要围绕问题入口设计。</p>
+          <p>玩家带着具体问题来搜索。下面按六类意图拆成「可承接的模块」：每块写明典型问法、本站如何落地、未来可拆成的详情页骨架，以及站内跳转，便于你按优先级补内容与做 SEO。</p>
         </div>
-        <span class="note">适合后续拆成 SEO 栏目页</span>
+        <span class="note">以下为栏目规划示意</span>
       </div>
-      <div class="grid-3">
-        <article class="card searchable" data-keywords="新手 入坑 开荒 升级 资源 装备 技能">
-          <span class="num">1</span>
-          <h3>新手入坑</h3>
-          <p>最关心选什么武器、升级路线、技能怎么点、装备要不要强化、哪些资源不要乱花。</p>
-          <div class="tags"><span class="tag gold">新手指南</span><span class="tag">开荒路线</span><span class="tag">避坑</span></div>
+      <div class="intent-module-list">
+        <article class="panel intent-module searchable" data-keywords="新手 入坑 开荒 升级 资源 装备 技能 选武器 避坑 主线 支线 材料 代币 强化 精炼 技能点 职业 回流 小号">
+          <header class="intent-module-head">
+            <span class="num">1</span>
+            <div>
+              <h3>新手入坑</h3>
+              <p class="intent-lede">意图是「别走弯路」：在信息爆炸里快速知道先做什么、别浪费什么，以及武器与玩法是否适合自己。</p>
+            </div>
+          </header>
+          <div class="intent-grid">
+            <div class="intent-block">
+              <h4>典型搜索意图</h4>
+              <ul>
+                <li>刚下载 / 回流：先跟主线还是清支线？装备强化与精炼优先级？</li>
+                <li>选武器：双持怎么配、近战远程手感、单人友好与组队缺口。</li>
+                <li>资源：技能点、材料、合约与代币先投哪里；哪些坑会拖慢进度。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>本站如何承接</h4>
+              <ul>
+                <li><span class="intent-strong">构筑库</span>用「新手」筛选给出低操作成本的武器组合与技能表。</li>
+                <li><span class="intent-strong">每日待办</span>把「上线先做三件事」写成可勾选清单，形成回访习惯。</li>
+                <li>首页与 roadmap 标明「新手指南」扩展位，避免与构筑长文抢首屏。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>详情页建议（SEO 骨架）</h4>
+              <ul>
+                <li>总览页：版本入坑路线图（章节式：1～10 / 10～20 / 满级后）。</li>
+                <li>子页：资源优先级表、常见误区 FAQ、单职业/武器生态简介。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>数据与维护</h4>
+              <ul>
+                <li>随版本更新「推荐构筑标签」与每日清单条目；外链官方补丁说明作佐证。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="intent-footer">
+            <span class="intent-label">关键词池（可被首页搜索筛选）</span>
+            <div class="tags"><span class="tag gold">新手指南</span><span class="tag">开荒路线</span><span class="tag">避坑</span><span class="tag">资源规划</span></div>
+            <div class="intent-links">
+              <a href="builds.html?q=新手">构筑库 · 新手筛选</a>
+              <a href="daily.html">每日待办</a>
+              <a href="roadmap.html">站点规划 · 内容扩展</a>
+            </div>
+          </div>
         </article>
-        <article class="card searchable" data-keywords="build 构筑 武器 职业 弓匕 大剑 匕首 法杖 坦克 治疗 输出">
-          <span class="num">2</span>
-          <h3>构筑查询</h3>
-          <p>稳定搜索需求：PVE输出、PVP单挑、大规模团战、坦克、治疗、平民构筑。</p>
-          <div class="tags"><span class="tag blue">武器搭配</span><span class="tag">PVE</span><span class="tag">PVP</span></div>
+
+        <article class="panel intent-module searchable" data-keywords="build 构筑 武器 职业 弓匕 大剑 匕首 法杖 坦克 治疗 输出 PVE PVP 技能 铭文 配装 双持 魔杖 长弓 弩 剑盾">
+          <header class="intent-module-head">
+            <span class="num">2</span>
+            <div>
+              <h3>构筑查询</h3>
+              <p class="intent-lede">意图是「抄作业可执行」：武器对、技能名、职责标签一眼对齐，减少论坛翻楼成本。</p>
+            </div>
+          </header>
+          <div class="intent-grid">
+            <div class="intent-block">
+              <h4>典型搜索意图</h4>
+              <ul>
+                <li>按武器搜：弓匕、大剑匕首、法杖魔杖等具体搭配与变种。</li>
+                <li>按场景搜：团本输出、野外单刷、战场、守点坦克、团血治疗。</li>
+                <li>按游戏内用语搜：技能英文名 / 关键被动，对照本站表格。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>本站如何承接</h4>
+              <ul>
+                <li><span class="intent-strong">构筑库</span>：多标签筛选 + 双武器技能表（与游戏内命名对齐）。</li>
+                <li>URL 带 <code>?q=</code> 便于分享「筛选后的列表」给队友。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>详情页建议（SEO 骨架）</h4>
+              <ul>
+                <li>单构筑长文：定位、优缺点、技能循环要点、装备与铭文方向（简表即可）。</li>
+                <li>对比页：同职责两套构筑的差异（上手难度、资源依赖）。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>数据与维护</h4>
+              <ul>
+                <li>版本变动时批量更新 <code>js/data.js</code> 中构筑条目与标签；保留旧版备注或「已过期」提示。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="intent-footer">
+            <span class="intent-label">关键词池</span>
+            <div class="tags"><span class="tag blue">武器搭配</span><span class="tag">PVE</span><span class="tag">PVP</span><span class="tag">技能表</span></div>
+            <div class="intent-links">
+              <a href="builds.html">进入构筑库</a>
+              <a href="builds.html?q=治疗">示例：治疗筛选</a>
+            </div>
+          </div>
         </article>
-        <article class="card searchable" data-keywords="副本 地下城 机制 boss 打法 站位 灭团点">
-          <span class="num">3</span>
-          <h3>副本机制</h3>
-          <p>玩家进本前需要快速看 Boss 技能、站位、打断点、灭团点和队伍职责。</p>
-          <div class="tags"><span class="tag green">机制速查</span><span class="tag">站位</span><span class="tag">队伍配置</span></div>
+
+        <article class="panel intent-module searchable" data-keywords="副本 地下城 机制 boss 打法 站位 灭团点 打断 驱散 坦克 奶妈 职责 进本 门槛 装备等级">
+          <header class="intent-module-head">
+            <span class="num">3</span>
+            <div>
+              <h3>副本机制</h3>
+              <p class="intent-lede">意图是「进本前心里有底」：每个 Boss 阶段要干什么、灭团点在哪、队伍最少配置是什么。</p>
+            </div>
+          </header>
+          <div class="intent-grid">
+            <div class="intent-block">
+              <h4>典型搜索意图</h4>
+              <ul>
+                <li>按副本名 / Boss 名搜机制时间轴、地板技能、必打断技能。</li>
+                <li>按职责搜：坦克拉怪位置、治疗抬血窗口、远程分散集合。</li>
+                <li>开荒向：装备门槛、推荐构筑、常见灭团三次原因。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>本站如何承接</h4>
+              <ul>
+                <li><span class="intent-strong">副本页</span>先按类型聚合入口，再为热门本拆独立静态页（便于收录）。</li>
+                <li>与构筑库交叉链接：该本推荐职责与武器标签。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>详情页建议（SEO 骨架）</h4>
+              <ul>
+                <li>单本攻略：总览 → 各 Boss 阶段表（技能名 / 应对 / 站位简图占位）。</li>
+                <li>一页式速查：仅列灭团点与检查清单，供手机开打前扫一眼。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>数据与维护</h4>
+              <ul>
+                <li>机制以「可验证」为准：随补丁改时间轴时更新日期与版本脚注。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="intent-footer">
+            <span class="intent-label">关键词池</span>
+            <div class="tags"><span class="tag green">机制速查</span><span class="tag">站位</span><span class="tag">队伍配置</span><span class="tag">灭团点</span></div>
+            <div class="intent-links">
+              <a href="dungeons.html">副本入口</a>
+              <a href="builds.html?q=坦克">坦克构筑</a>
+            </div>
+          </div>
         </article>
-        <article class="card searchable" data-keywords="世界boss archboss 时间 掉落 活动 日程 服务器">
-          <span class="num">4</span>
-          <h3>Boss / 活动时间</h3>
-          <p>适合做工具页：世界 Boss、Archboss、动态事件、公会活动提醒和掉落查询。</p>
-          <div class="tags"><span class="tag red">时间表</span><span class="tag">掉落</span><span class="tag">提醒</span></div>
+
+        <article class="panel intent-module searchable" data-keywords="世界boss archboss 时间 掉落 活动 日程 服务器 日历 提醒 野外 动态事件 维护 公告">
+          <header class="intent-module-head">
+            <span class="num">4</span>
+            <div>
+              <h3>Boss / 活动时间</h3>
+              <p class="intent-lede">意图是「对齐服务器时钟」：几点打什么、和谁抢、掉落与参与条件，最好一页能订阅或收藏。</p>
+            </div>
+          </header>
+          <div class="intent-grid">
+            <div class="intent-block">
+              <h4>典型搜索意图</h4>
+              <ul>
+                <li>世界 Boss / Archboss：刷新段、参与人数、掉落与代币用途。</li>
+                <li>限时活动与节日排期；跨时区玩家换算本地时间。</li>
+                <li>与公会指挥表对齐：提前集合、分包、替补规则（外链 Discord 亦可）。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>本站如何承接</h4>
+              <ul>
+                <li><span class="intent-strong">Boss 与活动页</span>用表格 + 说明文字承载时间表；后续可加「导出 .ics」或打印友好样式。</li>
+                <li>与每日清单联动：活动日自动勾「提醒项」占位（静态站可用文案引导手动勾选）。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>详情页建议（SEO 骨架）</h4>
+              <ul>
+                <li>单 Boss 页：时间、地图、机制摘要、掉落表、推荐人数。</li>
+                <li>「本周日程」聚合页：利于重复访问与收藏。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>数据与维护</h4>
+              <ul>
+                <li>时间类内容必须标注数据来源与最后校对日期；维护公告后第一时间改表。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="intent-footer">
+            <span class="intent-label">关键词池</span>
+            <div class="tags"><span class="tag red">时间表</span><span class="tag">掉落</span><span class="tag">提醒</span><span class="tag">Archboss</span></div>
+            <div class="intent-links">
+              <a href="boss.html">Boss 与活动时间</a>
+              <a href="daily.html">每日待办（联动）</a>
+            </div>
+          </div>
         </article>
-        <article class="card searchable" data-keywords="公会 pvp 攻城 团战 boonstone riftstone 战场">
-          <span class="num">5</span>
-          <h3>公会 / PVP</h3>
-          <p>中后期玩家重点：攻城、公会战、Boonstone、Riftstone、团战职业分工。</p>
-          <div class="tags"><span class="tag blue">公会战</span><span class="tag">团战定位</span><span class="tag">PVP</span></div>
+
+        <article class="panel intent-module searchable" data-keywords="公会 pvp 攻城 团战 boonstone riftstone 战场 指挥 配置 语音 报名 替补 赛季">
+          <header class="intent-module-head">
+            <span class="num">5</span>
+            <div>
+              <h3>公会 / PVP</h3>
+              <p class="intent-lede">意图是「组织战可执行」：谁站哪、什么构筑克制、资源点与指挥口令，比个人攻略更偏「流程与分工」。</p>
+            </div>
+          </header>
+          <div class="intent-grid">
+            <div class="intent-block">
+              <h4>典型搜索意图</h4>
+              <ul>
+                <li>攻城 / 公会战：分队、破门顺序、投石与补给、替补轮换。</li>
+                <li>野外据点：Boonstone、Riftstone 等目标争夺节奏与职业需求。</li>
+                <li>PVP 构筑与反制：针对主流组合的换武器与技能取舍。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>本站如何承接</h4>
+              <ul>
+                <li>静态站内以「索引 + 摘要」为主：链到构筑库 PVP 标签、Boss 时间表、每日清单中的公会项。</li>
+                <li>长流程攻略可拆为多页，避免单页过长；指挥表可用外链表格补充。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>详情页建议（SEO 骨架）</h4>
+              <ul>
+                <li>模式说明页：规则摘要、常见术语、获胜条件。</li>
+                <li>分工模板：可复制的「岗位检查表」与推荐构筑列表。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>数据与维护</h4>
+              <ul>
+                <li>公会向内容更新频率高，建议页脚统一「适用版本」与讨论区链接占位。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="intent-footer">
+            <span class="intent-label">关键词池</span>
+            <div class="tags"><span class="tag blue">公会战</span><span class="tag">团战定位</span><span class="tag">PVP</span><span class="tag">据点</span></div>
+            <div class="intent-links">
+              <a href="builds.html?q=PVP">PVP 构筑</a>
+              <a href="boss.html">活动时间</a>
+              <a href="roadmap.html">站点规划</a>
+            </div>
+          </div>
         </article>
-        <article class="card searchable" data-keywords="每日 每周 checklist 任务 材料 合约 代币">
-          <span class="num">6</span>
-          <h3>每日清单</h3>
-          <p>留存型功能：每天上线该做什么、哪些任务优先、材料怎么规划。</p>
-          <div class="tags"><span class="tag gold">留存工具</span><span class="tag">每日</span><span class="tag">每周</span></div>
+
+        <article class="panel intent-module searchable" data-keywords="每日 每周 checklist 任务 材料 合约 代币 上线 优先 留存 周常 日常 委派">
+          <header class="intent-module-head">
+            <span class="num">6</span>
+            <div>
+              <h3>每日清单</h3>
+              <p class="intent-lede">意图是「打开就干活」：用最低决策成本列出今日必做、可做、可鸽，提高回访与书签率。</p>
+            </div>
+          </header>
+          <div class="intent-grid">
+            <div class="intent-block">
+              <h4>典型搜索意图</h4>
+              <ul>
+                <li>每天上线先做哪几项收益最高；周常与日常如何穿插。</li>
+                <li>材料与代币：本周目标装备 / 技能还差哪些输入。</li>
+                <li>与活动表联动：今天有没有必参加窗口。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>本站如何承接</h4>
+              <ul>
+                <li><span class="intent-strong">每日待办页</span>用本地存储记住勾选状态，适合固定开浏览器的一批用户。</li>
+                <li>条目与构筑、副本、Boss 页交叉引用（「做完日常再去某活动」）。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>详情页建议（SEO 骨架）</h4>
+              <ul>
+                <li>「周循环」说明页：新号 / 老号不同优先级的两套清单。</li>
+                <li>材料图鉴轻量页：只列获取途径与主要消耗去向。</li>
+              </ul>
+            </div>
+            <div class="intent-block">
+              <h4>数据与维护</h4>
+              <ul>
+                <li>清单随版本增减条目；大改时在页顶公告一行「本周清单有更新」。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="intent-footer">
+            <span class="intent-label">关键词池</span>
+            <div class="tags"><span class="tag gold">留存工具</span><span class="tag">每日</span><span class="tag">每周</span><span class="tag">Checklist</span></div>
+            <div class="intent-links">
+              <a href="daily.html">打开每日待办</a>
+              <a href="boss.html">对照活动时间</a>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -534,377 +371,56 @@
     <section id="hot" class="container section">
       <div class="section-head">
         <div>
-          <h2>首页热门入口</h2>
-          <p>首页不要堆太多文字，先给玩家 4 个最常点击的入口。</p>
+          <h2>栏目入口</h2>
+          <p>全站多页结构，以下为各频道主页链接。</p>
         </div>
       </div>
       <div class="grid-4">
-        <a class="card searchable" href="#builds" data-keywords="武器 构筑 build 推荐">
+        <a class="card" href="today.html">
+          <h3>今日指挥台</h3>
+          <p>待办、收藏构筑、周目标示意表、活动占位与打印简报一页聚合，适合设为浏览器首页。</p>
+          <span class="tag gold">日开核心</span>
+        </a>
+        <a class="card" href="builds.html">
           <h3>武器构筑库</h3>
-          <p>按 PVE、PVP、坦克、治疗、新手推荐筛选。</p>
+          <p>筛选 PVE / PVP / 坦克 / 治疗 / 新手，含游戏内技能名表格。</p>
           <span class="tag gold">高搜索</span>
         </a>
-        <a class="card searchable" href="#dungeons" data-keywords="副本 机制 攻略 地下城 boss">
+        <a class="card" href="dungeons.html">
           <h3>副本机制速查</h3>
-          <p>进本前 1 分钟看懂灭团点和职责。</p>
+          <p>副本类型入口，后续可扩展单本攻略。</p>
           <span class="tag green">高转化</span>
         </a>
-        <a class="card searchable" href="#boss" data-keywords="boss 时间 世界boss archboss 掉落">
-          <h3>Boss时间表</h3>
-          <p>后续可接 JSON 或后台，做成站点留存工具。</p>
+        <a class="card" href="boss.html">
+          <h3>Boss 与活动时间</h3>
+          <p>时间表与工具页结构示例。</p>
           <span class="tag red">工具型</span>
         </a>
-        <a class="card searchable" href="#daily" data-keywords="每日 清单 每周 任务 checklist">
+        <a class="card" href="daily.html">
           <h3>每日待办</h3>
-          <p>玩家每天打开一次，适合提升回访。</p>
+          <p>本地存储勾选状态，适合每日打开。</p>
           <span class="tag blue">留存型</span>
         </a>
-      </div>
-    </section>
-
-    <section id="builds" class="container section">
-      <div class="section-head">
-        <div>
-          <h2>武器构筑速查</h2>
-          <p>这一块是攻略站的核心流量入口。每张卡内用表格列出与客户端一致的英文技能名（按构筑常用搭配归类为核心 / 可选 / 被动），后续可拆成独立详情页。</p>
-        </div>
-      </div>
-      <div class="chips" id="buildFilters">
-        <button class="chip active" data-role="全部">全部</button>
-        <button class="chip" data-role="PVE输出">PVE输出</button>
-        <button class="chip" data-role="PVP">PVP</button>
-        <button class="chip" data-role="坦克">坦克</button>
-        <button class="chip" data-role="治疗">治疗</button>
-        <button class="chip" data-role="新手推荐">新手推荐</button>
-      </div>
-      <div class="grid-3" id="buildGrid"></div>
-      <div class="empty" id="buildEmpty">没有匹配到构筑，可以换个关键词试试。</div>
-    </section>
-
-    <section id="dungeons" class="container section">
-      <div class="section-head">
-        <div>
-          <h2>副本攻略入口</h2>
-          <p>先做“副本类型入口”，后续再补每个副本的 Boss 技能、机制图、站位图和视频。</p>
-        </div>
-      </div>
-      <div class="grid-3" id="dungeonGrid"></div>
-    </section>
-
-    <section id="boss" class="container section">
-      <div class="section-head">
-        <div>
-          <h2>Boss / 活动时间表</h2>
-          <p>当前是前端展示结构。正式上线时，建议用 JSON 或后台维护服务器时间、掉落和提醒。</p>
-        </div>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>内容</th>
-              <th>类型</th>
-              <th>示例时间</th>
-              <th>页面价值</th>
-            </tr>
-          </thead>
-          <tbody id="bossTable"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="daily" class="container section">
-      <div class="section-head">
-        <div>
-          <h2>每日 / 每周待办</h2>
-          <p>这个功能很适合做站点留存，玩家每天来勾一次，就会形成使用习惯。</p>
-        </div>
-        <button class="btn secondary" onclick="resetTodos()">重置清单</button>
-      </div>
-      <div class="grid-2">
-        <div class="panel" style="padding:22px;">
-          <div class="section-head" style="margin-bottom:12px;">
-            <div><h2 style="font-size:22px;">今日优先</h2><p>本地保存勾选状态</p></div>
-          </div>
-          <div class="todo-list" id="todoList"></div>
-        </div>
-        <div class="panel" style="padding:22px;">
-          <div class="section-head" style="margin-bottom:12px;">
-            <div><h2 style="font-size:22px;">开荒路线</h2><p>适合扩展成新手专题页</p></div>
-          </div>
-          <div class="roadmap">
-            <div class="roadmap-item"><b>第1步</b><p>先确定主玩法：PVE输出、PVP、坦克或治疗。不要一开始平均投入所有武器。</p></div>
-            <div class="roadmap-item"><b>第2步</b><p>只优先升级核心技能和常用武器，前期材料不要分散消耗。</p></div>
-            <div class="roadmap-item"><b>第3步</b><p>进副本前先看机制速查，重点记住打断点、躲避点和团队职责。</p></div>
-            <div class="roadmap-item"><b>第4步</b><p>尽早加入活跃公会，中后期 Boss、团战和资源获取都和公会强相关。</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="roadmap" class="container section">
-      <div class="section-head">
-        <div>
-          <h2>MVP上线规划</h2>
-          <p>第一版目标不是一次性做完，而是用最少页面验证搜索流量和玩家需求。</p>
-        </div>
-      </div>
-      <div class="grid-2">
-        <div class="panel" style="padding:22px;">
-          <h3>首批页面建议</h3>
-          <div class="roadmap" style="margin-top:14px;">
-            <div class="roadmap-item"><b>构筑页</b><p>先做 8-12 个武器组合页：标题固定为“武器A+武器B 构筑推荐 / 技能 / 装备词条”。</p></div>
-            <div class="roadmap-item"><b>副本页</b><p>先做 6-10 个副本机制速查页：Boss技能、灭团点、站位、推荐队伍。</p></div>
-            <div class="roadmap-item"><b>工具页</b><p>Boss时间表、每日清单、材料优先级，这类页面更容易提高回访。</p></div>
-            <div class="roadmap-item"><b>新手页</b><p>新手入坑、升级路线、资源避坑、平民玩家推荐，适合承接泛搜索。</p></div>
-          </div>
-        </div>
-        <div class="panel" style="padding:22px;">
-          <h3>内容模板</h3>
-          <div class="table-wrap" style="margin-top:14px;">
-            <table>
-              <thead><tr><th>页面类型</th><th>必须包含</th></tr></thead>
-              <tbody>
-                <tr><td><strong>构筑详情页</strong></td><td>适合人群、优缺点、技能优先级、装备词条、PVE/PVP手法</td></tr>
-                <tr><td><strong>副本攻略页</strong></td><td>准入建议、Boss技能、灭团点、打法流程、队伍职责</td></tr>
-                <tr><td><strong>Boss页面</strong></td><td>刷新时间、区域、Peace/Conflict、掉落、注意事项</td></tr>
-                <tr><td><strong>新手页面</strong></td><td>入坑建议、资源规划、常见误区、推荐路线、下一步链接</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </section>
   </main>
 
   <footer class="container footer">
-    <p>非官方 Throne and Liberty 中文攻略站 MVP 示例。正式上线前请替换为原创攻略内容，并避免直接使用未经授权的游戏素材。</p>
+    <nav class="footer-nav" aria-label="站点地图">
+      <a href="index.html">首页</a>
+      <a href="today.html">今日</a>
+      <a href="builds.html">构筑</a>
+      <a href="dungeons.html">副本</a>
+      <a href="boss.html">Boss</a>
+      <a href="daily.html">每日</a>
+      <a href="glossary.html">术语</a>
+      <a href="roadmap.html">规划</a>
+      <a href="changelog.html">更新</a>
+    </nav>
+    <p>非官方 Throne and Liberty 中文攻略站。内容仅供参考；正式运营请使用原创攻略并遵守版权与游戏条款。</p>
   </footer>
 
-  <script>
-    const builds = [
-      {
-        name: "长弓 + 匕首", role: ["PVE输出", "PVP", "新手推荐"], weapons: ["Longbow", "Dagger"], difficulty: "中", crowd: "喜欢远程输出的新手",
-        summary: "远程输出手感好，匕首提供爆发和机动性，适合安全距离输出与灵活走位。", tags: ["远程", "爆发", "机动"],
-        weaponBlocks: [
-          { label: "武器一 · 长弓", nameEn: "Longbow", detail: "主力输出位：中远距离消耗、单体点名与走位拉扯；被贴脸前尽量保留耐力用于后撤。", skills: { core: ["Ensnaring Arrow", "Strafing", "Deadly Marker", "Decisive Sniping", "Brutal Arrow"], flex: ["Arrow Vortex", "Zephyr's Nock", "Healing Touch", "Purifying Touch"], passive: ["Sniper's Sense", "Steady Aim", "Rapidfire Stance", "Roxie's Arrowhead"] } },
-          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "副手爆发与保命：敌人突脸时打短爆发，或用位移技能重新建立长弓输出距离。", skills: { core: ["Shadow Strike", "Cleaving Moonlight", "Inject Venom", "Brutal Incision", "Knife Throwing"], flex: ["Camouflage Cloak", "Ankle Strike", "Fatal Stigma"], passive: ["Assassin's Instincts", "Destructive Fang", "Shadow Walker", "Assassin's Step"] } }
-        ]
-      },
-      {
-        name: "剑盾 + 魔杖", role: ["坦克", "新手推荐"], weapons: ["Sword & Shield", "Wand"], difficulty: "低-中", crowd: "副本承伤 / 稳定开荒",
-        summary: "偏生存和团队功能，容错率高，适合副本承伤、公会活动和稳定开荒。", tags: ["承伤", "团队", "容错"],
-        weaponBlocks: [
-          { label: "武器一 · 剑盾", nameEn: "Sword & Shield", detail: "主坦位：稳定仇恨、减伤与短控制；节奏偏「挡—反打—护队友」。", skills: { core: ["Provoking Roar", "Shield Strike", "Chain Hook", "Counter Barrier", "Stalwart Bastion"], flex: ["Shield Throw", "Strategic Rush", "Fierce Clash", "Witty Strike"], passive: ["Resilient Mind", "Impenetrable", "Gerad's Patience", "Morale Boost"] } },
-          { label: "武器二 · 魔杖", nameEn: "Wand", detail: "副手辅助：提供应急治疗、驱散与护盾，小队无纯奶时也能稳住血线。", skills: { core: ["Swift Healing", "Clay's Salvation", "Blessed Barrier", "Invincible Wall", "Touch of Despair"], flex: ["Chaotic Shield", "Corrupted Magic Circle", "Fountain of Life", "Cursed Nightmare"], passive: ["Devotion and Emptiness", "Selfless Soul", "Noble Revival", "Vampiric Contract"] } }
-        ]
-      },
-      {
-        name: "法杖 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Staff", "Dagger"], difficulty: "中-高", crowd: "追求爆发伤害",
-        summary: "法术爆发强，适合清怪和打输出，但对站位、技能循环和资源管理要求更高。", tags: ["法系", "爆发", "AOE"],
-        weaponBlocks: [
-          { label: "武器一 · 法杖", nameEn: "Staff", detail: "法系主输出：AOE 清场与读条爆发；需熟悉安全输出位与读条窗口。", skills: { core: ["Inferno Wave", "Fireball Barrage", "Chain Lightning", "Judgement Lightning", "Ice Spear"], flex: ["Icebound Tomb", "Frost Smokescreen", "Serial Fire Bombs", "High Focus"], passive: ["Flame Condensation", "Asceticism", "Mana Amp", "Forbidden Sanctuary"] } },
-          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "补近战窗口与斩杀：Boss 近身机制或 PVP 贴身时，用法杖控场后匕首补爆发。", skills: { core: ["Brutal Incision", "Cleaving Moonlight", "Umbral Spirit", "Vampiric Strike", "Shadow Strike"], flex: ["Camouflage Cloak", "Phantom Smokescreen", "Block Blade"], passive: ["Destructive Fang", "Wrathful Edge", "Murderous Energy", "Assassin's Instincts"] } }
-        ]
-      },
-      {
-        name: "大剑 + 匕首", role: ["PVP", "PVE输出"], weapons: ["Greatsword", "Dagger"], difficulty: "中", crowd: "近战切入玩家",
-        summary: "近战压制能力强，适合小规模PVP和切后排，但需要掌握进场和撤退时机。", tags: ["近战", "控制", "切入"],
-        weaponBlocks: [
-          { label: "武器一 · 大剑", nameEn: "Greatsword", detail: "正面压制：范围伤害、蓄力斩与短控制；负责压血线与逼出敌方技能。", skills: { core: ["Death Blow", "Devastating Tornado", "Ascending Slash", "Stunning Blow", "Valiant Brawl"], flex: ["Devastating Smash", "Precision Dash", "Willbreaker", "Gaia Crash"], passive: ["Barbarian's Dash", "Cold Warrior", "Raging Frenzy", "Victor's Morale"] } },
-          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "侧翼收割：大剑打出硬直或残血后，匕首负责追击、斩杀与脱离。", skills: { core: ["Cleaving Moonlight", "Brutal Incision", "Frenzied Sword Dance", "Ankle Strike", "Knife Throwing"], flex: ["Fatal Stigma", "Camouflage Cloak", "Shadow Strike"], passive: ["Assassin's Instincts", "Assassin's Step", "Wrathful Edge"] } }
-        ]
-      },
-      {
-        name: "弩 + 匕首", role: ["PVE输出", "PVP"], weapons: ["Crossbow", "Dagger"], difficulty: "高", crowd: "愿意练手法的玩家",
-        summary: "高频输出与爆发组合，操作更吃熟练度，上限高但容错相对低。", tags: ["高频", "爆发", "手法"],
-        weaponBlocks: [
-          { label: "武器一 · 弩", nameEn: "Crossbow", detail: "远程高频输出：靠弹药 / 能量管理与短窗口爆发；站桩少时依赖滑步与技能位移。", skills: { core: ["Quick Fire", "Merciless Barrage", "Mortal Mark", "Multi-Shot", "Nimble Leap"], flex: ["Explosive Trap", "Recoil Shot", "Selfless Diffusion", "Weak Point Shot"], passive: ["Bloodlust Stack", "Ambidexterity", "Eagle Vision", "Nature's Power"] } },
-          { label: "武器二 · 匕首", nameEn: "Dagger", detail: "爆发放大器：弩打出硬直或减速后，匕首在近距离放大爆发；失误时用位移兜底。", skills: { core: ["Cleaving Moonlight", "Brutal Incision", "Block Blade", "Shadow Strike", "Fatal Stigma"], flex: ["Camouflage Cloak", "Ankle Strike", "Inject Venom"], passive: ["Destructive Fang", "Shadow Walker", "Assassination Stance", "Assassin's Step"] } }
-        ]
-      },
-      {
-        name: "魔杖 + 法杖", role: ["治疗", "PVE输出"], weapons: ["Wand", "Staff"], difficulty: "中", crowd: "组队辅助玩家",
-        summary: "兼顾治疗、辅助和法术输出，适合固定队、公会队和喜欢团队贡献的玩家。", tags: ["治疗", "辅助", "法系"],
-        weaponBlocks: [
-          { label: "武器一 · 魔杖", nameEn: "Wand", detail: "治疗主手：单体急救、群体抬血与增益；团队生存优先于个人毛伤害。", skills: { core: ["Swift Healing", "Clay's Salvation", "Invincible Wall", "Ray of Disaster", "Fountain of Life"], flex: ["Karmic Haze", "Time for Punishment", "Curse Explosion", "Blessed Barrier"], passive: ["Saint's Oath", "Selfless Soul", "Noble Revival", "Wraith's Beckon"] } },
-          { label: "武器二 · 法杖", nameEn: "Staff", detail: "输出副手：治疗压力小时切法杖补刀；高压阶段仍以魔杖为主，法杖只打瞬发。", skills: { core: ["Inferno Wave", "Chain Lightning", "Serial Fire Bombs", "Inner Peace", "Infernal Meteor"], flex: ["Fireball Barrage", "Judgement Lightning", "Frost Smokescreen"], passive: ["Manaball Eruption", "Flame Condensation", "Echoic Barrier", "Frost Master"] } }
-        ]
-      },
-      {
-        name: "剑盾 + 大剑", role: ["坦克", "PVP"], weapons: ["Sword & Shield", "Greatsword"], difficulty: "中", crowd: "前排控制玩家",
-        summary: "承伤、控制和近战压制兼顾，适合团战前排和需要稳定开团的队伍。", tags: ["前排", "控制", "团战"],
-        weaponBlocks: [
-          { label: "武器一 · 剑盾", nameEn: "Sword & Shield", detail: "主坦与开团：仇恨、减伤、保护技能全在剑盾轮切时优先。", skills: { core: ["Provoking Roar", "Shield Strike", "Immortal Pride", "Stalwart Bastion", "Counter Barrier"], flex: ["Chain Hook", "Shield Survival Technique", "Strategic Rush"], passive: ["Aegis Shield", "Impenetrable", "Skillful Evasion", "Spectrum of Agony"] } },
-          { label: "武器二 · 大剑", nameEn: "Greatsword", detail: "副手爆发：坦住核心伤害后，用大剑补压制、收割残血或逼退敌方后排。", skills: { core: ["Devastating Tornado", "Guillotine Blade", "Death Blow", "Stunning Blow", "Willbreaker"], flex: ["Blood Devotion", "DaVinci's Courage", "Devastating Smash"], passive: ["Indomitable Armor", "Robust Constitution", "Vital Force", "Cold Warrior"] } }
-        ]
-      },
-      {
-        name: "长弓 + 法杖", role: ["PVE输出", "新手推荐"], weapons: ["Longbow", "Staff"], difficulty: "中", crowd: "远程站桩输出",
-        summary: "远程输出覆盖面广，适合喜欢稳定输出和副本刷图的玩家，操作压力相对适中。", tags: ["远程", "刷图", "稳定"],
-        weaponBlocks: [
-          { label: "武器一 · 长弓", nameEn: "Longbow", detail: "物理远程主力：单体与移动战输出；与法杖错开资源，避免双读条叠压力。", skills: { core: ["Strafing", "Deadly Marker", "Decisive Sniping", "Ensnaring Arrow", "Brutal Arrow"], flex: ["Zephyr's Nock", "Arrow Vortex", "Nature's Blessing"], passive: ["Sniper's Sense", "Rapidfire Stance", "Earth's Blessing", "Distorted Sanctuary"] } },
-          { label: "武器二 · 法杖", nameEn: "Staff", detail: "法系补充：处理物理抗性高或多目标阶段；长弓真空期用法杖 DOT 或 AOE 填缝。", skills: { core: ["Inferno Wave", "Chain Lightning", "Infernal Meteor", "Ice Spear", "Judgement Lightning"], flex: ["Frost Smokescreen", "Serial Fire Bombs", "High Focus"], passive: ["Asceticism", "Forbidden Sanctuary", "Flame Condensation", "Mana Amp"] } }
-        ]
-      }
-    ];
-
-    function buildWeaponBlocksHtml(item) {
-      if (!item.weaponBlocks || !item.weaponBlocks.length) return "";
-      const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-      const skillTableRows = (sk) => {
-        const rows = [];
-        const pushCat = (label, arr) => {
-          (arr || []).forEach((name) => {
-            rows.push(`<tr><td class="skill-cat">${esc(label)}</td><td class="skill-name">${esc(name)}</td></tr>`);
-          });
-        };
-        pushCat("核心主动", sk.core);
-        pushCat("可选 / 情境", sk.flex);
-        pushCat("被动", sk.passive);
-        if (!rows.length) return "";
-        return `<div class="weapon-skill-table-wrap"><table class="weapon-skill-table"><thead><tr><th>分类</th><th>技能名（游戏内英文）</th></tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
-      };
-      return item.weaponBlocks.map((w) => {
-        const sk = w.skills || {};
-        return `
-        <div class="weapon-block">
-          <h4>${esc(w.label)} <span style="color:var(--muted2);font-weight:700;">${esc(w.nameEn)}</span></h4>
-          <p class="weapon-block-desc">${esc(w.detail)}</p>
-          ${skillTableRows(sk)}
-        </div>`;
-      }).join("");
-    }
-
-    function buildSearchBlob(item) {
-      const parts = [item.name, item.summary, item.crowd, item.weapons.join(" "), item.role.join(" "), item.tags.join(" ")];
-      (item.weaponBlocks || []).forEach((w) => {
-        parts.push(w.label, w.nameEn, w.detail);
-        const sk = w.skills || {};
-        ["core", "flex", "passive"].forEach((k) => (sk[k] || []).forEach((t) => parts.push(t)));
-      });
-      return parts.join(" ").toLowerCase();
-    }
-
-    const dungeons = [
-      { title: "Solo Dungeons 单人副本", level: "练机制 / 个人成长", summary: "适合熟悉职业循环、Boss技能和基础资源规划，是新手过渡到组队内容的训练场。", tags: ["单人", "成长", "练手"] },
-      { title: "Co-Op Dungeons 组队副本", level: "6人队伍 / 装备获取", summary: "建议做成机制速查页：Boss技能、站位、打断点、灭团点和推荐队伍配置。", tags: ["6人", "机制", "掉落"] },
-      { title: "3-Star Dungeons 高阶副本", level: "满级后 / 高战力挑战", summary: "适合放详细攻略、视频、站位图和职业职责拆解，是后续SEO重点页面。", tags: ["高阶", "挑战", "SEO重点"] }
-    ];
-
-    const bosses = [
-      { name: "世界Boss", type: "Peace / Conflict", time: "按服务器日程", value: "适合做刷新提醒、掉落表和路线建议" },
-      { name: "Archboss", type: "大型Boss / 公会内容", time: "按服务器日程", value: "适合做单独专题页，承接高价值搜索" },
-      { name: "动态事件", type: "PVE / PVP 活动", time: "循环刷新", value: "适合做活动日历，提升玩家回访" },
-      { name: "公会活动", type: "Boonstone / Riftstone", time: "按公会安排", value: "适合做公会战准备清单和职业分工" }
-    ];
-
-    const todos = [
-      "查看今日活动与 Boss 时间",
-      "完成日常合约 / 关键资源任务",
-      "消耗副本次数或重要代币",
-      "检查装备词条与技能成长优先级",
-      "参加公会活动或确认公会通知",
-      "整理背包、材料和拍卖行物品"
-    ];
-
-    let currentRole = "全部";
-
-    function renderBuilds(keyword = "") {
-      const grid = document.getElementById("buildGrid");
-      const empty = document.getElementById("buildEmpty");
-      const q = keyword.trim().toLowerCase();
-      const list = builds.filter(item => {
-        const rolePass = currentRole === "全部" || item.role.includes(currentRole);
-        const text = buildSearchBlob(item);
-        return rolePass && (!q || text.includes(q));
-      });
-      const escAttr = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
-      grid.innerHTML = list.map(item => `
-        <article class="card searchable" data-keywords="${escAttr(buildSearchBlob(item))}">
-          <h3>${item.name}</h3>
-          <div class="weapon-line">${item.weapons.map(w => `<span class="weapon">${w}</span>`).join("")}</div>
-          <p>${item.summary}</p>
-          <div class="build-meta">
-            <div class="meta-box">适合人群<b>${item.crowd}</b></div>
-            <div class="meta-box">上手难度<b>${item.difficulty}</b></div>
-          </div>
-          <div class="build-weapons-detail">${buildWeaponBlocksHtml(item)}</div>
-          <div class="tags">${item.role.map(r => `<span class="tag gold">${r}</span>`).join("")}${item.tags.map(t => `<span class="tag blue">${t}</span>`).join("")}</div>
-        </article>
-      `).join("");
-      empty.style.display = list.length ? "none" : "block";
-    }
-
-    function renderDungeons() {
-      const grid = document.getElementById("dungeonGrid");
-      grid.innerHTML = dungeons.map(item => `
-        <article class="card searchable" data-keywords="${item.title} ${item.level} ${item.tags.join(' ')} 副本 地下城 boss 机制">
-          <h3>${item.title}</h3>
-          <p>${item.summary}</p>
-          <div class="tags"><span class="tag green">${item.level}</span>${item.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
-        </article>
-      `).join("");
-    }
-
-    function renderBosses() {
-      const tbody = document.getElementById("bossTable");
-      tbody.innerHTML = bosses.map(item => `
-        <tr class="searchable" data-keywords="${item.name} ${item.type} boss archboss 活动 时间 掉落 公会">
-          <td><strong>${item.name}</strong></td>
-          <td>${item.type}</td>
-          <td>${item.time}</td>
-          <td>${item.value}</td>
-        </tr>
-      `).join("");
-    }
-
-    function renderTodos() {
-      const saved = JSON.parse(localStorage.getItem("tl-mvp-todos") || "{}");
-      const list = document.getElementById("todoList");
-      list.innerHTML = todos.map((todo, index) => `
-        <label class="todo ${saved[index] ? 'done' : ''}">
-          <input type="checkbox" ${saved[index] ? 'checked' : ''} onchange="toggleTodo(${index}, this.checked)" />
-          <span>${todo}</span>
-        </label>
-      `).join("");
-    }
-
-    function toggleTodo(index, checked) {
-      const saved = JSON.parse(localStorage.getItem("tl-mvp-todos") || "{}");
-      saved[index] = checked;
-      localStorage.setItem("tl-mvp-todos", JSON.stringify(saved));
-      renderTodos();
-    }
-
-    function resetTodos() {
-      localStorage.removeItem("tl-mvp-todos");
-      renderTodos();
-    }
-
-    function runSearch() {
-      const q = document.getElementById("globalSearch").value.trim().toLowerCase();
-      renderBuilds(q);
-      document.querySelectorAll(".searchable").forEach(el => {
-        const text = (el.innerText + " " + (el.dataset.keywords || "")).toLowerCase();
-        el.style.display = (!q || text.includes(q)) ? "" : "none";
-      });
-    }
-
-    document.getElementById("globalSearch").addEventListener("input", runSearch);
-    document.querySelectorAll("#buildFilters .chip").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll("#buildFilters .chip").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        currentRole = btn.dataset.role;
-        renderBuilds(document.getElementById("globalSearch").value);
-      });
-    });
-
-    renderBuilds();
-    renderDungeons();
-    renderBosses();
-    renderTodos();
-  </script>
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

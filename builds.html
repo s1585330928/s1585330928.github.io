@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>武器构筑库 | TL中文攻略站</title>
+  <meta name="description" content="Throne and Liberty 武器双持构筑速查：筛选定位、游戏内英文技能名表格。" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="TL中文攻略站首页">
+        <span class="brand-mark">TL</span>
+        <span>TL中文攻略站</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="today.html">今日</a>
+        <a href="builds.html">构筑库</a>
+        <a href="dungeons.html">副本</a>
+        <a href="boss.html">Boss与活动</a>
+        <a href="daily.html">每日待办</a>
+        <a href="glossary.html">术语</a>
+        <a href="roadmap.html">站点规划</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container page-lead">
+      <h1>武器构筑速查</h1>
+      <p>按定位筛选构筑；搜索匹配构筑卡片与技能名。表格内为与客户端一致的英文技能名（示例搭配，随版本以游戏内为准）。</p>
+      <p class="data-verified" data-site-meta></p>
+    </div>
+
+    <section class="container section" style="padding-top:0;">
+      <div class="search-box" style="margin-bottom:18px;">
+        <input id="globalSearch" type="search" placeholder="搜索：Ensnaring、坦克、治疗、匕首…" />
+      </div>
+      <div class="chips" id="buildFilters">
+        <button type="button" class="chip active" data-role="全部">全部</button>
+        <button type="button" class="chip" data-role="PVE输出">PVE输出</button>
+        <button type="button" class="chip" data-role="PVP">PVP</button>
+        <button type="button" class="chip" data-role="坦克">坦克</button>
+        <button type="button" class="chip" data-role="治疗">治疗</button>
+        <button type="button" class="chip" data-role="新手推荐">新手推荐</button>
+      </div>
+      <div class="grid-3" id="buildGrid"></div>
+      <div class="empty" id="buildEmpty">没有匹配到构筑，可以换个关键词试试。</div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <nav class="footer-nav" aria-label="站点地图">
+      <a href="index.html">首页</a>
+      <a href="today.html">今日</a>
+      <a href="builds.html">构筑</a>
+      <a href="dungeons.html">副本</a>
+      <a href="boss.html">Boss</a>
+      <a href="daily.html">每日</a>
+      <a href="glossary.html">术语</a>
+      <a href="roadmap.html">规划</a>
+      <a href="changelog.html">更新</a>
+    </nav>
+    <p>非官方 Throne and Liberty 中文攻略站。技能与数值请以当前版本客户端为准。</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

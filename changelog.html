@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>更新日志 | TL中文攻略站</title>
+  <meta name="description" content="TL中文攻略站结构与示例数据更新记录。" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="TL中文攻略站首页">
+        <span class="brand-mark">TL</span>
+        <span>TL中文攻略站</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="today.html">今日</a>
+        <a href="builds.html">构筑库</a>
+        <a href="dungeons.html">副本</a>
+        <a href="boss.html">Boss与活动</a>
+        <a href="daily.html">每日待办</a>
+        <a href="glossary.html">术语</a>
+        <a href="roadmap.html">站点规划</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container page-lead">
+      <h1>本站更新日志</h1>
+      <p>记录栏目与示例数据变更，方便回访用户判断「是否值得再打开看一眼」。游戏平衡以官方为准。</p>
+      <p class="data-verified" data-site-meta></p>
+    </div>
+
+    <section class="container section" style="padding-top:0;">
+      <div class="panel changelog-panel">
+        <h2 class="changelog-date">2026-05-14</h2>
+        <ul class="changelog-list">
+          <li>新增 <strong>今日指挥台</strong>（<code>today.html</code>）：待办双端同步、周目标示意表、活动占位表、收藏构筑区、示例倒计时、打印简报与本地 JSON 导出。</li>
+          <li>新增 <strong>术语速查</strong>（<code>glossary.html</code>）与 <strong>更新日志</strong>（本页）。</li>
+          <li><code>data.js</code>：增加 <code>siteMeta</code>、<code>weeklyGoals</code>、<code>demoCountdown</code>；待办改为可带链接的对象数组。</li>
+          <li><code>site.js</code>：构筑卡片星标收藏（<code>localStorage</code>）、校对信息注入、今日页渲染与倒计时。</li>
+          <li>新增真实副本样例页 <strong>幽影深渊 Specter's Abyss</strong>（<code>dungeon-specters-abyss.html</code>）；<code>data.js</code> 组队类下挂载实例链；副本入口页文案同步。</li>
+          <li>全站导航与页脚扩展；首页 Hero 增加「今日指挥台」入口与栏目卡片。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <nav class="footer-nav" aria-label="站点地图">
+      <a href="index.html">首页</a>
+      <a href="today.html">今日</a>
+      <a href="builds.html">构筑</a>
+      <a href="dungeons.html">副本</a>
+      <a href="boss.html">Boss</a>
+      <a href="daily.html">每日</a>
+      <a href="glossary.html">术语</a>
+      <a href="roadmap.html">规划</a>
+      <a href="changelog.html">更新</a>
+    </nav>
+    <p>非官方 Throne and Liberty 中文攻略站。</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
